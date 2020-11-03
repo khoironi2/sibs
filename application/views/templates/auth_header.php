@@ -2,23 +2,35 @@
 <html lang="en">
 
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="<?= base_url('assets/img/Logo.png') ?>" type="image/gif" sizes="16x16">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
 
-    <title>SISTEM INFORMASI PERAWATAN BENDA MUSEUM</title>
+    <!-- Title Page-->
+    <title><?= $title; ?></title>
 
-    <!-- Custom fonts for this template-->
-    <link href="<?= base_url('assets/'); ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Fontfaces CSS-->
+    <link href="<?= base_url('assets'); ?>/css/font-face.css" rel="stylesheet" media="all">
+    <link href="<?= base_url('assets'); ?>/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="<?= base_url('assets'); ?>/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="<?= base_url('assets'); ?>/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
-    <!-- Custom styles for this template-->
-    <link href="<?= base_url('assets/'); ?>css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS-->
+    <link href="<?= base_url('assets'); ?>/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="<?= base_url('assets'); ?>/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="<?= base_url('assets'); ?>/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="<?= base_url('assets'); ?>/vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="<?= base_url('assets'); ?>/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="<?= base_url('assets'); ?>/vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="<?= base_url('assets'); ?>/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="<?= base_url('assets'); ?>/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="<?= base_url('assets'); ?>/css/theme.css" rel="stylesheet" media="all">
 
 </head>
-
-<body class="bg-gradient-primary">

@@ -1,65 +1,103 @@
-# [Start Bootstrap - SB Admin 2](https://startbootstrap.com/themes/sb-admin-2/)
+CoolAdmin Bootstrap 4.1 Admin Dashboard Template
+================================================
 
-[SB Admin 2](https://startbootstrap.com/themes/sb-admin-2/) is an open source admin dashboard theme for [Bootstrap](https://getbootstrap.com/) created by [Start Bootstrap](https://startbootstrap.com/).
+**CoolAdmin** is a responsive Bootstrap 4.1 admin template. It provides you with
+a collection of ready to use code snippets and utilities, custom pages, loads of
+charts, 4 different dashboard variations, a collection of applications and some
+useful widgets. Preview of this awesome admin template available here:
+https://colorlib.com/polygon/cooladmin/index.html
 
-For the legacy Bootstrap 3 version of this theme, you can view the [last stable release](https://github.com/StartBootstrap/startbootstrap-sb-admin-2/releases/tag/v3.3.7%2B1) of SB Admin 2 for Bootstrap 3.
+Preview
+=======
 
-## Preview
+### Screenshot
 
-[![SB Admin 2 Preview](https://startbootstrap.com/assets/img/screenshots/themes/sb-admin-2.png)](https://startbootstrap.github.io/startbootstrap-sb-admin-2/)
+![CoolAdmin admin dashboard template preview](media/9606031aabebde32fa96edeff071a132.jpg)
 
-**[Launch Live Preview](https://startbootstrap.github.io/startbootstrap-sb-admin-2/)**
+CoolAdmin admin dashboard template preview
 
-## Status
+### Demo Site: [[Here]](https://colorlib.com/polygon/cooladmin/index.html)
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/StartBootstrap/startbootstrap-sb-admin-2/master/LICENSE)
-[![npm version](https://img.shields.io/npm/v/startbootstrap-sb-admin-2.svg)](https://www.npmjs.com/package/startbootstrap-sb-admin-2)
-[![Build Status](https://travis-ci.org/StartBootstrap/startbootstrap-sb-admin-2.svg?branch=master)](https://travis-ci.org/StartBootstrap/startbootstrap-sb-admin-2)
-[![dependencies Status](https://david-dm.org/StartBootstrap/startbootstrap-sb-admin-2/status.svg)](https://david-dm.org/StartBootstrap/startbootstrap-sb-admin-2)
-[![devDependencies Status](https://david-dm.org/StartBootstrap/startbootstrap-sb-admin-2/dev-status.svg)](https://david-dm.org/StartBootstrap/startbootstrap-sb-admin-2?type=dev)
+### TOC
 
-## Download and Installation
+-   [Built With](#built-with)
 
-To begin using this template, choose one of the following options to get started:
+-   [Changelog](#changelog)
 
-* [Download the latest release on Start Bootstrap](https://startbootstrap.com/themes/sb-admin-2/)
-* Install via npm: `npm i startbootstrap-sb-admin-2`
-* Clone the repo: `git clone https://github.com/StartBootstrap/startbootstrap-sb-admin-2.git`
-* [Fork, Clone, or Download on GitHub](https://github.com/StartBootstrap/startbootstrap-sb-admin-2)
+-   [Authors](#authors)
 
-## Usage
+-   [License](#license)
 
-After installation, run `npm install` and then run `npm start` which will open up a preview of the template in your default browser, watch for changes to core template files, and live reload the browser when changes are saved. You can view the `gulpfile.js` to see which tasks are included with the dev environment.
+### Built With
 
-### Gulp Tasks
+-   [Accordion.JS](https://github.com/awps/Accordion.JS)
 
-* `gulp` the default task that builds everything
-* `gulp watch` browserSync opens the project in your default browser and live reloads when changes are made
-* `gulp css` compiles SCSS files into CSS and minifies the compiled CSS
-* `gulp js` minifies the themes JS file
-* `gulp vendor` copies dependencies from node_modules to the vendor directory
+-   [animsition](http://blivesta.github.io/animsition)
 
-You must have npm installed globally in order to use this build environment. This theme was built using node v11.6.0 and the Gulp CLI v2.0.1. If Gulp is not running properly after running `npm install`, you may need to update node and/or the Gulp CLI locally.
+-   [bootstrap-progressbar](https://github.com/minddust/bootstrap-progressbar)
 
-## Bugs and Issues
+-   [Bootstrap](http://getbootstrap.com/)
 
-Have a bug or an issue with this template? [Open a new issue](https://github.com/StartBootstrap/startbootstrap-sb-admin-2/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](https://startbootstrap.com/themes/sb-admin-2/).
+-   [Chart.js](http://www.chartjs.org/)
 
-## About
+-   [Counter-Up](https://github.com/bfintal/Counter-Up)
 
-Start Bootstrap is an open source library of free Bootstrap templates and themes. All of the free templates and themes on Start Bootstrap are released under the MIT license, which means you can use them for any purpose, even for commercial projects.
+-   [CSS Hamburgers](https://github.com/jonsuh/hamburgers)
 
-* <https://startbootstrap.com>
-* <https://twitter.com/SBootstrap>
+-   [Full Calendar](https://fullcalendar.io)
 
-Start Bootstrap was created by and is maintained by **[David Miller](http://davidmiller.io/)**.
+-   [Fontawesome](http://fontawesome.io/)
 
-* <http://davidmiller.io>
-* <https://twitter.com/davidmillerskt>
-* <https://github.com/davidtmiller>
+-   [jquery-circle-progress](http://kottenator.github.io/jquery-circle-progress/)
 
-Start Bootstrap is based on the [Bootstrap](https://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
+-   [jQuery](https://jquery.com/)
 
-## Copyright and License
+-   [Date picker](https://www.jqueryscript.net/time-clock/Date-Time-Picker-Bootstrap-4.html)
 
-Copyright 2013-2020 Start Bootstrap LLC. Code released under the [MIT](https://github.com/StartBootstrap/startbootstrap-resume/blob/gh-pages/LICENSE) license.
+-   [JQVMap](https://jqvmap.com/)
+
+-   [Lightbox2](https://github.com/lokesh/lightbox2)
+
+-   [Material Design
+    Icons](https://github.com/Templarian/MaterialDesign-Webfont)
+
+-   [perfect-scrollbar](https://github.com/utatti/perfect-scrollbar)
+
+-   [ProgressBar.js](https://github.com/kimmobrunfeldt/progressbar.js)
+
+-   [Select2](https://github.com/select2/select2)
+
+-   [Slick](http://kenwheeler.github.io/slick/)
+
+-   [Sweetalwer](https://github.com/sweetalert2/sweetalert2)
+
+-   [The Final Countdown for jQuery](http://hilios.github.io/jQuery.countdown/)
+
+-   [WOW](https://github.com/matthieua/WOW)
+
+### Changelog
+
+#### V 1.0.0
+
+Initial Release \#\#\# Authors [Colorlib](https://colorlib.com)
+
+### More info
+
+-   [Bootstrap
+    dashboards](https://colorlib.com/wp/free-bootstrap-admin-dashboard-templates/)
+
+-   [Angular dashboards](https://colorlib.com/wp/angularjs-admin-templates/)
+
+-   [Free Admin
+    Dashboards](https://colorlib.com/wp/free-html5-admin-dashboard-templates/)
+
+-   [Website Templates](https://colorlib.com/wp/templates/)
+
+-   [Free WordPress Themes](https://colorlib.com/wp/free-wordpress-themes/)
+
+### License
+
+CoolAdmin is licensed under The MIT License (MIT). Which means that you can use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+final products. But you always need to state that Colorlib is the original
+author of this template.
