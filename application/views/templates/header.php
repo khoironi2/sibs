@@ -33,4 +33,7 @@
     <!-- Main CSS-->
     <link href="<?= base_url('assets'); ?>/css/theme.css" rel="stylesheet" media="all">
 
+    <!-- select -->
+    <!-- <link rel="stylesheet" href="<?= base_url('assets/css/select2.min.css') ?>"> -->
+
 </head>

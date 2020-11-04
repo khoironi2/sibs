@@ -29,6 +29,13 @@
     <!-- Main JS-->
     <script src="<?= base_url('assets'); ?>/js/main.js"></script>
 
+    <!-- select2 -->
+    <!-- <script src="<?= base_url('assets/js/select2.min.js') ?>"></script> -->
+
+    <script>
+        $('#id_users').select2();
+    </script>
+
 </body>
 
 </html>

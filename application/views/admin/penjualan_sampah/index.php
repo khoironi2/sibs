@@ -5,6 +5,7 @@
         <a href="<?= base_url('admin/create_penjualan_sampah'); ?>" class="au-btn btn-dark m-b-20"><i class="fas fa-plus"></i> Tambah</a>
         <a href="" class="au-btn btn-danger m-b-20"><i class="far fa-file-pdf"></i> Cetak</a>
         <!-- DATA TABLE-->
+        <?= $this->session->flashdata('message'); ?>
         <div class="table-responsive m-b-40">
             <table class="table table-borderless table-data3">
                 <thead>
@@ -20,45 +21,22 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php $no = 1; ?>
+                    <?php foreach ($penjualan as $penjual) : ?>
                     <tr>
-                        <td>1</td>
-                        <td>Mobile</td>
-                        <td>iPhone X 64Gb Grey</td>
-                        <td class="process">Processed</td>
-                        <td>$999.00</td>
-                        <td>$999.00</td>
-                        <td>$999.00</td>
+                        <td><?= $no++; ?></td>
+                        <td><?= $penjual["time_create_penjualan"]; ?></td>
+                        <td><?= $penjual["name"]; ?>y</td>
+                        <td><?= $penjual["nama_katalog"]; ?></td>
+                        <td><?= $penjual["berat_penjualan"]; ?></td>
+                        <td><?= $penjual["harga_penjualan"]; ?></td>
+                        <td><?= $penjual["total_penjualan"]; ?></td>
                         <td>
                             <a href="<?= base_url('admin/update_penjualan_sampah'); ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
                             <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Mobile</td>
-                        <td>iPhone X 64Gb Grey</td>
-                        <td class="process">Processed</td>
-                        <td>$999.00</td>
-                        <td>$999.00</td>
-                        <td>$999.00</td>
-                        <td>
-                            <a href="<?= base_url('admin/update_penjualan_sampah'); ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Mobile</td>
-                        <td>iPhone X 64Gb Grey</td>
-                        <td class="process">Processed</td>
-                        <td>$999.00</td>
-                        <td>$999.00</td>
-                        <td>$999.00</td>
-                        <td>
-                            <a href="<?= base_url('admin/update_penjualan_sampah'); ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
+                    <?php endforeach; ?>
                     
                 </tbody>
             </table>
