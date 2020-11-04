@@ -56,6 +56,41 @@ class Admin extends CI_Controller
         $this->load->view('admin/nasabah/index', $data);
         $this->load->view('templates/footer');
     }
+    public function laporan_penjualan_pdf()
+    {
+        if ($this->CI->router->fetch_class() != "login") {
+            // session check logic here...change this accordingly
+            if ($this->CI->session->userdata['level'] == 'pengelola') {
+                redirect('Admin');
+            } elseif ($this->CI->session->userdata['level'] == 'pihak_pusat') {
+                redirect('Admin');
+            }
+        }
+        $this->load->library('dompdf_gen');
+
+        $keyword1 = $this->input->post('keyword1');
+        $keyword2 = $this->input->post('keyword2');
+        $data = [
+            'awal' =>  $keyword1,
+            'akhir' => $keyword2,
+            'saldoku' => $this->Nasabah_model->getSaldoku(),
+            'logo' => '<img src="assets/images/icon/logo-mini.png" alt="" class="mr-3">',
+            'gambar' => 'assets/img/perbaikan/'
+        ];
+        // $data['penjualanku'] = $this->Nasabah_model->getPenjualanku();
+        //  $data['nasabah'] = $this->Nasabah_model->getAllNasabah();
+        $data['nasabah'] = $this->Nasabah_model->getNasabahbytgl($keyword1, $keyword2);
+        $this->load->view('admin/nasabah/laporan/pdf/Penjualan', $data);
+
+        $paper_size = 'A4';
+        $orientation = 'landscape';
+        $html = $this->output->get_output();
+        $this->dompdf->set_paper($paper_size, $orientation);
+
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("laporan_data_nasabah_penjualan.pdf", ['Attachment' => 0]);
+    }
 
     public function create_nasabah()
     {
