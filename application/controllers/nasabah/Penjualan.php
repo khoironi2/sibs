@@ -2,12 +2,13 @@
 
 class Penjualan extends CI_Controller
 {
-    // public function __construct()
-    // {
-    //     parent::__construct();
-    //     $this->cek_status();
-    //     $this->CI = &get_instance();
-    // }
+    public function __construct()
+    {
+        parent::__construct();
+        $this->cek_status();
+        $this->CI = &get_instance();
+        $this->load->library('session');
+    }
 
     // |------------------------------------------------------
     // | Dashboard
@@ -15,16 +16,16 @@ class Penjualan extends CI_Controller
 
     public function index()
     {
-        // $data1['users'] = $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array();
-        // $isi = $this->db->join('tbl_users', 'tbl_users.id_users =tbl_users.id_users')->get_where('tbl_penjualan', ['tbl_penjualan.id_users' => $data1['users']['id_users']])->result_array();
-        //  $isi = $this->db->join('tbl_penjualan', 'tbl_penjualan.id_penjualan =tbl_perawatan.id_koleksi')->get_where('tbl_perawatan', ['tbl_perawatan.id_users' => $data1['users']['id_users']])->result_array();
+        $id = $this->session->userdata('id_users');
+
         $data = [
             'title' => 'Nasabah | Data Penjualan',
+            'saldoku' => $this->Nasabah_model->getSaldoku($id),
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array()
         ];
         $data['penjualan'] = $this->db->get_where('tbl_penjualan', ['id_users' => $data['users']['id_users']])->result_array();
 
-        //   $data['penjualan'] = $this->Nasabah_model->getPenjualan();
+        // $data['saldoku'] = $this->Nasabah_model->getSaldoku();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');

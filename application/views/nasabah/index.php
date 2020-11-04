@@ -37,59 +37,11 @@
         <!-- END DATA TABLE-->
     </div>
 </div>
-
-
-<div class="container-fluid">
-
-
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Nilai Mata Pelajaran <?= $title; ?>
-                <a class="badge badge-pill badge-success" style="color: white;" href="<?= base_url('mata_pelajaran/akhlak/export') ?>"><b>EXPORT</b></a>
-            </h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>RT</th>
-                            <th>RT</th>
-                            <th>RT</th>
-                            <th>RT</th>
-                            <th id="btn-action">Action</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>RT</th>
-                            <th>RT</th>
-                            <th>RT</th>
-                            <th>RT</th>
-                            <th id="btn-actionfot">Action</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        <?php $no = 1;
-                        foreach ($penjualan as $data) : ?>
-                            <tr>
-                                <td><?= $no++ ?></td>
-                                <td><?= $users['name'] ?></td>
-                                <td><?= $users['rt_users'] ?></td>
-                                <td><?= $users['alamat_users'] ?></td>
-                                <td><?= $users['telepon_users'] ?></td>
-                                <td><?= $data['total_penjualan'] ?></td>
-                            </tr>
-                        <?php endforeach ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+<div class="row m-t-30">
+    <div class="col-sm-12">
+        <?php $no = 1;
+        foreach ($saldoku as $data) : ?>
+            <p><b>Total Penjualan Sampah :</b> Rp. <?= $data->total; ?></p>
+        <?php endforeach ?>
     </div>
-
 </div>

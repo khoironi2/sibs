@@ -164,6 +164,7 @@ class Admin extends CI_Controller
         $this->load->view('templates/topbar');
         $this->load->view('admin/katalog_sampah/create');
         $this->load->view('templates/footer');
+
         if ($this->upload->do_upload('gambar_katalog')) {
             $new_image = $this->upload->data('file_name');
             $this->db->set('gambar_katalog', $new_image);
@@ -383,11 +384,11 @@ class Admin extends CI_Controller
         echo "OK";
     }
 
-    
+
     // |------------------------------------------------------
     // | Laporan
     // |------------------------------------------------------
-    
+
     public function profile()
     {
         $data = [
@@ -397,7 +398,7 @@ class Admin extends CI_Controller
 
         $this->form_validation->set_rules('total_penjualan', 'total', 'required');
 
-        
+
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/header_mobile');
