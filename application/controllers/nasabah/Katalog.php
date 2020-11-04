@@ -36,6 +36,14 @@ class Katalog extends CI_Controller
 
     public function search()
     {
+        if ($this->CI->router->fetch_class() != "login") {
+            // session check logic here...change this accordingly
+            if ($this->CI->session->userdata['level'] == 'admin') {
+                redirect('admin');
+            } elseif ($this->CI->session->userdata['level'] == 'ketua') {
+                redirect('ketua');
+            }
+        }
         $data = [
             'title' => 'Sistem Informasi Bank Sampah Enviro 18',
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array()

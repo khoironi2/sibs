@@ -326,6 +326,7 @@ class Admin extends CI_Controller
             'user' => $this->db->get('tbl_users')->result_array(),
             'katalog' => $this->db->get('tbl_katalog')->result_array(),
         ];
+        $data['record'] =  $this->Penjualan_model->tampil_data();
 
         $this->form_validation->set_rules('time_create_penjualan', 'tanggal', 'required');
         $this->form_validation->set_rules('id_users', 'nama', 'required');
@@ -356,6 +357,13 @@ class Admin extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Penjualan Sampah Berhasil Ditambahkan</div>');
             redirect('admin/penjualan_sampah');
         }
+    }
+
+    public function cari()
+    {
+        $id_katalog = $_GET['id_katalog'];
+        $cari = $this->Penjualan_model->cari($id_katalog)->result();
+        echo json_encode($cari);
     }
 
     public function update_penjualan_sampah($id)

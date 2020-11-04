@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Penjualan_model extends CI_Model
 {
@@ -11,5 +11,16 @@ class Penjualan_model extends CI_Model
         ";
 
         return $this->db->query($query)->result_array();
+    }
+
+    function tampil_data()
+    {
+        return $this->db->get('tbl_katalog');
+    }
+
+    function cari($id_katalog)
+    {
+        $query = $this->db->get_where('tbl_katalog', array('id_katalog' => $id_katalog));
+        return $query;
     }
 }
