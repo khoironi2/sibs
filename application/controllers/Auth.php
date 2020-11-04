@@ -88,13 +88,19 @@ class Auth extends CI_Controller
             $email = $this->input->post('email');
             $password = $this->input->post('password');
             $pass = password_hash($password, PASSWORD_DEFAULT);
+            $rt = $this->input->post('rt_users');
+            $alamat_users = $this->input->post('alamat_users');
+            $telepon_users = $this->input->post('telepon_users');
             // $level = $this->input->post('level');
             date_default_timezone_set("ASIA/JAKARTA");
             $data = [
                 'name' => $name,
                 'email' => $email,
                 'password' => $pass,
-                'level' => 'admin',
+                'rt_users' => $rt,
+                'alamat_users' => $alamat_users,
+                'telepon_users' => $telepon_users,
+                'level' => 'nasabah',
                 'time_create_users' => date('Y-m-d H:i:s')
             ];
 

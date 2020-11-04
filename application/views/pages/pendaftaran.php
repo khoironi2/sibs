@@ -7,27 +7,36 @@
     <div class="col-sm-8">
         <div class="card">
             <div class="card-body">
-                <div class="form-group">
-                    <label for="name">Nama</label>
-                    <input type="text" class="form-control" id="name" name="name">
-                    <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
-                </div>
-
-                <div class="form-group">
-                    <label for="rt">RT</label>
-                    <input type="text" class="form-control" id="rt">
-                </div>
-                <div class="form-group">
-                    <label for="alamat">Alamat</label>
-                    <input type="text" class="form-control" id="alamat">
-                </div>
-                <div class="form-group">
-                    <label for="no_hp">No Hp / WA</label>
-                    <input type="text" class="form-control" id="no_hp">
-                </div>
-                <div class="form-group mt-5">
-                    <button type="submit" class="btn btn-dark float-right">Daftar</button>
-                </div>
+                <form action="<?= base_url('auth/registerForm') ?>" method="post">
+                    <div class="form-group">
+                        <label for="name">Nama</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="alamatemail@gmail.com" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input name="confrim_password" type="password" id="inputPassword" class="form-control" placeholder="Confrim Password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rt">RT</label>
+                        <input type="text" name="rt_users" class="form-control" id="rt" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" name="alamat_users" class="form-control" id="alamat" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_hp">No Hp / WA</label>
+                        <input type="text" name="telepon_users" class="form-control" id="no_hp" required>
+                    </div>
+                    <div class="form-group mt-5">
+                        <button type="submit" class="btn btn-dark float-right">Daftar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
