@@ -34,6 +34,22 @@ class Katalog extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function search()
+    {
+        $data = [
+            'title' => 'Sistem Informasi Bank Sampah Enviro 18',
+            'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array()
+        ];
+        $keyword = $this->input->post('keyword');
+        $data['katalogs'] = $this->Katalog_model->get_katalog_keyword($keyword);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/header_mobile');
+        $this->load->view('templates/sidebar_nasabah');
+        $this->load->view('templates/topbar');
+        $this->load->view('nasabah/katalog_sampah/search');
+        $this->load->view('templates/footer');
+    }
+
     public function create_katalog_sampah()
     {
         $data = [
