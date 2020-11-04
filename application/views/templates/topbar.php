@@ -12,10 +12,14 @@
                         <div class="account-wrap">
                             <div class="account-item clearfix js-item-menu">
                                 <div class="image">
-                                    <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                    <?php if (!$this->session->userdata('email')) : ?>
+                                        <img src="<?= base_url('assets/images/users/' . $users["gambar_users"]); ?>" alt="<?= $users["name"] ?>" />
+                                    <?php else : ?>
+                                        <img src="<?= base_url('assets') ?>/images/users/default-user-image.png" alt="<?= $users["name"] ?>" />
+                                    <?php endif; ?>
                                 </div>
                                 <div class="content">
-                                    <a class="js-acc-btn" href="#">john doe</a>
+                                    <a class="js-acc-btn" href="#"><?= $users["name"] ?></a>
                                 </div>
                                 <div class="account-dropdown js-dropdown">
                                     <div class="info clearfix">

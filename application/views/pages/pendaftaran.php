@@ -8,8 +8,9 @@
         <div class="card">
             <div class="card-body">
                 <div class="form-group">
-                    <label for="nama">Nama</label>
-                    <input type="text" class="form-control" id="nama">
+                    <label for="name">Nama</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                    <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
 
                 <div class="form-group">
