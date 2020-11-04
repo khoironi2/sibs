@@ -30,10 +30,12 @@
     <link href="<?= base_url('assets'); ?>/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="<?= base_url('assets'); ?>/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
+
     <!-- Main CSS-->
     <link href="<?= base_url('assets'); ?>/css/theme.css" rel="stylesheet" media="all">
 
     <!-- select -->
     <!-- <link rel="stylesheet" href="<?= base_url('assets/css/select2.min.css') ?>"> -->
+
 
 </head>

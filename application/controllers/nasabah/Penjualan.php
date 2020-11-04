@@ -1,13 +1,13 @@
 <?php
 
-class Admin extends CI_Controller
+class Penjualan extends CI_Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $this->cek_status();
-        $this->CI = &get_instance();
-    }
+    // public function __construct()
+    // {
+    //     parent::__construct();
+    //     $this->cek_status();
+    //     $this->CI = &get_instance();
+    // }
 
     // |------------------------------------------------------
     // | Dashboard
@@ -15,45 +15,22 @@ class Admin extends CI_Controller
 
     public function index()
     {
-        if ($this->CI->router->fetch_class() != "login") {
-            // session check logic here...change this accordingly
-            if ($this->CI->session->userdata['level'] == 'nasabah') {
-                redirect('nasabah/penjualan');
-            } elseif ($this->CI->session->userdata['level'] == 'ketua') {
-                redirect('ketua');
-            }
-        }
+        // $data1['users'] = $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array();
+        // $isi = $this->db->join('tbl_users', 'tbl_users.id_users =tbl_users.id_users')->get_where('tbl_penjualan', ['tbl_penjualan.id_users' => $data1['users']['id_users']])->result_array();
+        //  $isi = $this->db->join('tbl_penjualan', 'tbl_penjualan.id_penjualan =tbl_perawatan.id_koleksi')->get_where('tbl_perawatan', ['tbl_perawatan.id_users' => $data1['users']['id_users']])->result_array();
         $data = [
-            'title' => 'Admin | Dashboard',
-            'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
+            'title' => 'Nasabah | Data Penjualan',
+            'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array()
         ];
+        $data['penjualan'] = $this->db->get_where('tbl_penjualan', ['id_users' => $data['users']['id_users']])->result_array();
+
+        //   $data['penjualan'] = $this->Nasabah_model->getPenjualan();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');
-        $this->load->view('templates/sidebar_admin');
+        $this->load->view('templates/sidebar_nasabah');
         $this->load->view('templates/topbar');
-        $this->load->view('admin/dashboard/index', $data);
-        $this->load->view('templates/footer');
-    }
-
-    // |------------------------------------------------------
-    // | Data Nasabah
-    // |------------------------------------------------------
-    public function nasabah()
-    {
-        $data = [
-            'title' => 'Admin | Data Nasabah',
-            'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
-        ];
-
-        $data['nasabahs'] = $this->Nasabah_model->getAll();
-        $data['nasabah'] = $this->Nasabah_model->getAllNasabah();
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/header_mobile');
-        $this->load->view('templates/sidebar_admin');
-        $this->load->view('templates/topbar');
-        $this->load->view('admin/nasabah/index', $data);
+        $this->load->view('nasabah/index', $data);
         $this->load->view('templates/footer');
     }
 

@@ -12,19 +12,25 @@
             <!-- menu admin -->
             <ul class="list-unstyled navbar__list">
                 <li>
-                    <a href="<?= base_url('ketua/penjualan_sampah'); ?>">
+                    <a href="<?= base_url('admin'); ?>">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= base_url('nasabah/penjualan'); ?>">
                         <i class="fas fa-shopping-basket"></i>
-                        Penjualan Sampah
+                        Hasil Penjualan
                     </a>
                 </li>
                 <li>
-                    <a href="<?= base_url('ketua/laporan'); ?>">
-                        <i class="far fa-clipboard"></i>
-                        Laporan
+                    <a href="<?= base_url('admin/katalog_sampah'); ?>">
+                        <i class="fas fa-trash-alt"></i>
+                        Katalog Sampah
                     </a>
                 </li>
                 <li>
-                    <a href="<?= base_url('Auth/logout'); ?>">
+                    <a href="<?= base_url('Auth/logout') ?>">
                         <i class="fas fa-sign-in-alt"></i>
                         Logout
                     </a>

@@ -103,7 +103,7 @@ class CI_Controller
 	public function cek_status()
 	{
 		$this->load->library('session');
-		if ($this->session->userdata('id_users') == NULL) {
+		if ($this->session->userdata('email') == NULL) {
 			$this->session->set_flashdata('error_login', 'Silahkan login terlebih dahulu untuk mengakses data.');
 			redirect('auth');
 		}

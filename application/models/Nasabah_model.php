@@ -12,6 +12,16 @@ class Nasabah_model extends CI_model
 
         return $result->result();
     }
+    public function getPenjualan()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_penjualan');
+        $this->db->join('tbl_users', 'tbl_users.id_users=tbl_penjualan.id_users');
+        $this->db->where('tbl_users.id_users', $this->session->userdata('id_users'));
+        $result = $this->db->get();
+
+        return $result->result();
+    }
     public function getAllNasabah()
     {
         $this->db->select('tbl_users.name,tbl_users.rt_users,tbl_users.alamat_users,tbl_users.telepon_users,sum(tbl_penjualan.total_penjualan) as total');
