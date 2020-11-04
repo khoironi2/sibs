@@ -38,11 +38,14 @@ class Admin extends CI_Controller
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
         ];
 
+        $data['nasabahs'] = $this->Nasabah_model->getAll();
+        $data['nasabah'] = $this->Nasabah_model->getAllNasabah();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar_admin');
         $this->load->view('templates/topbar');
-        $this->load->view('admin/nasabah/index');
+        $this->load->view('admin/nasabah/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -237,6 +240,7 @@ class Admin extends CI_Controller
         $data = [
             'title' => 'Admin | Penjualan Sampah',
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
+            'penjualan' => $this->Penjualan_model->getAllPenjualan()
         ];
 
         $this->load->view('templates/header', $data);
@@ -252,14 +256,39 @@ class Admin extends CI_Controller
         $data = [
             'title' => 'Admin | Create Penjualan Sampah',
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
+            'user' => $this->db->get('tbl_users')->result_array(),
+            'katalog' => $this->db->get('tbl_katalog')->result_array(),
         ];
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/header_mobile');
-        $this->load->view('templates/sidebar_admin');
-        $this->load->view('templates/topbar');
-        $this->load->view('admin/penjualan_sampah/create');
-        $this->load->view('templates/footer');
+        $this->form_validation->set_rules('time_create_penjualan', 'tanggal', 'required');
+        $this->form_validation->set_rules('id_users', 'nama', 'required');
+        $this->form_validation->set_rules('id_katalog', 'jenis', 'required');
+        $this->form_validation->set_rules('berat_penjualan', 'berat', 'required');
+        $this->form_validation->set_rules('harga_penjualan', 'harga', 'required');
+        $this->form_validation->set_rules('total_penjualan', 'total', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/header_mobile');
+            $this->load->view('templates/sidebar_admin');
+            $this->load->view('templates/topbar');
+            $this->load->view('admin/penjualan_sampah/create');
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'time_create_penjualan' => $this->input->post('time_create_penjualan'),
+                'id_users' => $this->input->post('id_users'),
+                'id_katalog' => $this->input->post('id_katalog'),
+                'berat_penjualan' => $this->input->post('berat_penjualan'),
+                'harga_penjualan' => $this->input->post('harga_penjualan'),
+                'total_penjualan' => $this->input->post('total_penjualan')
+            ];
+
+            $this->db->insert('tbl_penjualan', $data);
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Penjualan Sampah Berhasil Ditambahkan</div>');
+            redirect('admin/penjualan_sampah');
+        }
     }
 
     public function update_penjualan_sampah()
