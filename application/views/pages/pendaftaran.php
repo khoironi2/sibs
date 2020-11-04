@@ -2,6 +2,41 @@
 <h3 class="text-center mt-3">BANK SAMPAH ENVIRO'18</h3>
 
 <P class="text-center mt-5">Silahkan untuk mengisi formulir dibawah ini</P>
+<?php $errors = $this->session->flashdata('errors'); ?>
+
+<?php if (!empty($errors)) : ?>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-danger text-center">
+                <?php foreach ($errors as $key => $error) { ?>
+                    <?php echo "$error<br>"; ?>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+
+<?php elseif ($msg = $this->session->flashdata('error_login')) : ?>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-danger text-center">
+                <?= $msg ?>
+            </div>
+        </div>
+    </div>
+
+<?php elseif ($msg = $this->session->flashdata('success_login')) : ?>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success text-center">
+                <?= $msg ?>
+            </div>
+        </div>
+    </div>
+
+<?php endif; ?>
 
 <div class="row mt-4 justify-content-center">
     <div class="col-sm-8">

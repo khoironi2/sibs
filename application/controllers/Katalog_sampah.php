@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Katalog_sampah extends CI_Controller
 {
@@ -6,6 +6,7 @@ class Katalog_sampah extends CI_Controller
     {
         $data = [
             'title' => 'Sistem Informasi Bank Sampah Enviro 18',
+            'katalog' => $this->Katalog_model->getAllKatalog()
         ];
 
         $this->load->view('templates/header', $data);

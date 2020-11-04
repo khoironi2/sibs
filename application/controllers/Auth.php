@@ -71,7 +71,7 @@ class Auth extends CI_Controller
     {
 
         $this->form_validation->set_rules('name', 'Nama', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|is_unique[tbl_users.email]|valid_email');
+        $this->form_validation->set_rules('email', 'Email Telah Terdaftar', 'required|is_unique[tbl_users.email]|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
         $this->form_validation->set_rules('confrim_password', 'Konfirmasi Password', 'required|trim|matches[password]');
         // $this->form_validation->set_rules('level', 'Level', 'required');
@@ -81,7 +81,7 @@ class Auth extends CI_Controller
             $errors = $this->form_validation->error_array();
             $this->session->set_flashdata('errors', $errors);
             $this->session->set_flashdata('input', $this->input->post());
-            redirect('auth');
+            redirect('/pendaftaran');
         } else {
 
             $name = $this->input->post('name');
