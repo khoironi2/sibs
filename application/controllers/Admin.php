@@ -180,7 +180,7 @@ class Admin extends CI_Controller
     }
 
 
-    public function update_katalog_sampah()
+    public function update_katalog_sampah($id)
     {
         $data = [
             'title' => 'Admin | Update Katalog Sampah',
