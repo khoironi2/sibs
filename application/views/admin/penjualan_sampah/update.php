@@ -4,39 +4,61 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
-                <div class="form-group">
-                    <label for="nama">Tanggal</label>
-                    <input type="date" class="form-control" id="nama">
-                </div>
+                
+                <form action="<?= base_url('admin/update_penjualan_sampah/' . $penjualan["id_penjualan"]); ?>" method="POST">
 
-                <div class="form-group">
-                    <label for="nama">Nama</label>
-                    <input type="text" class="form-control" id="nama">
-                </div>
+                    <input type="hidden" name="id_penjualan" value="<?= $penjualan["id_penjualan"]; ?>">
 
-                <div class="form-group">
-                    <label for="nama">Jenis Sampah</label>
-                    <input type="text" class="form-control" id="nama">
-                </div>
+                    <div class="form-group">
+                        <label for="time_create_penjualan">Tanggal</label>
+                        <input type="datetime-local" class="form-control" id="time_create_penjualan" name="time_create_penjualan" required>
+                        <?= form_error('time_create_penjualan', '<small class="text-danger pl-3">', '</small>'); ?>
+                    </div>
 
-                <div class="form-group">
-                    <label for="nama">Berat</label>
-                    <input type="text" class="form-control" id="nama">
-                </div>
+                    <div class="form-group">
+                        <label for="id_users">Nama</label>
+                        <select class="form-control" id="id_users" multiple name="id_users" required>
+                            <?php foreach ($user as $u) : ?>
+                                <option value="<?= $u["id_users"] ?>"><?= $u["name"] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <?= form_error('id_users', '<small class="text-danger pl-3">', '</small>'); ?>
+                    </div>
 
-                <div class="form-group">
-                    <label for="nama">Harga</label>
-                    <input type="text" class="form-control" id="nama">
-                </div>
+                    <div class="form-group">
+                        <label for="id_katalog">Jenis Sampah</label>
+                        <select class="form-control" id="id_katalog" name="id_katalog" required>
+                            <?php foreach ($katalog as $k) : ?>
+                                <option value="<?= $k["id_katalog"] ?>"><?= $k["nama_katalog"]; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <?= form_error('id_katalog', '<small class="text-danger pl-3">', '</small>'); ?>
+                    </div>
 
-                <div class="form-group">
-                    <label for="nama">Total</label>
-                    <input type="text" class="form-control" id="nama">
-                </div>
+                    <div class="form-group">
+                        <label for="berat_penjualan">Berat</label>
+                        <input type="text" class="form-control" id="berat_penjualan" name="berat_penjualan" required  value="<?= $penjualan["berat_penjualan"] ?>">
+                        <?= form_error('berat_penjualan', '<small class="text-danger pl-3">', '</small>'); ?>
+                    </div>
 
-                <div class="form-group mt-5">
-                    <button type="submit" class="btn btn-dark">Simpan Perubahan</button>
-                </div>
+                    <div class="form-group">
+                        <label for="harga_penjualan">Harga</label>
+                        <input type="text" class="form-control" id="harga_penjualan" name="harga_penjualan" required  value="<?= $penjualan["harga_penjualan"] ?>">
+                        <?= form_error('harga_penjualan', '<small class="text-danger pl-3">', '</small>'); ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="total_penjualan">Total</label>
+                        <input type="text" class="form-control" id="total_penjualan" name="total_penjualan" required  value="<?= $penjualan["total_penjualan"] ?>">
+                        <?= form_error('total_penjualan', '<small class="text-danger pl-3">', '</small>'); ?>
+                    </div>
+
+                    <div class="form-group mt-5">
+                        <button type="submit" class="btn btn-dark">Simpan Perubahan</button>
+                    </div>
+
+                </form>
+
             </div>
         </div>
     </div>

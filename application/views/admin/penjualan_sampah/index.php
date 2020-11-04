@@ -32,8 +32,8 @@
                         <td><?= $penjual["harga_penjualan"]; ?></td>
                         <td><?= $penjual["total_penjualan"]; ?></td>
                         <td>
-                            <a href="<?= base_url('admin/update_penjualan_sampah'); ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            <a href="<?= base_url('admin/update_penjualan_sampah/' . $penjual["id_penjualan"]); ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                            <a onclick="return confirm('Data Penjualan Sampah Akan Terhapus');" href="<?= base_url('admin/delete_penjualan_sampah/' . $penjual["id_penjualan"]); ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php endforeach; ?>

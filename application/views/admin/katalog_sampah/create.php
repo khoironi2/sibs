@@ -8,6 +8,12 @@
                 <form action="<?= base_url('admin/create_katalog_sampah'); ?>" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
+                        <label for="nama_katalog">Nama</label>
+                        <input type="text" class="form-control" id="nama_katalog" name="nama_katalog">
+                        <?= form_error('nama_katalog', '<small class="text-danger pl-3">', '</small>'); ?>
+                    </div>
+
+                    <div class="form-group">
                         <label for="id_jenis_katalog_sampah">Jenis Sampah</label>
                         <select class="form-control" id="id_jenis_katalog_sampah" name="id_jenis_katalog_sampah">
                             <?php foreach ($jenis_sampah as $sampah): ?>
