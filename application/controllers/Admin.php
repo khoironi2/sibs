@@ -24,7 +24,7 @@ class Admin extends CI_Controller
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar_admin');
         $this->load->view('templates/topbar');
-        $this->load->view('admin/dashboard/index');
+        $this->load->view('admin/dashboard/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -38,11 +38,14 @@ class Admin extends CI_Controller
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
         ];
 
+        $data['nasabahs'] = $this->Nasabah_model->getAll();
+        $data['nasabah'] = $this->Nasabah_model->getAllNasabah();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar_admin');
         $this->load->view('templates/topbar');
-        $this->load->view('admin/nasabah/index');
+        $this->load->view('admin/nasabah/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -60,7 +63,50 @@ class Admin extends CI_Controller
         $this->load->view('admin/nasabah/create');
         $this->load->view('templates/footer');
     }
-    
+
+    public function registerForm()
+
+    {
+
+        $this->form_validation->set_rules('name', 'Nama', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required|is_unique[tbl_users.email]|valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        $this->form_validation->set_rules('confrim_password', 'Konfirmasi Password', 'required|trim|matches[password]');
+        // $this->form_validation->set_rules('level', 'Level', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+
+            $errors = $this->form_validation->error_array();
+            $this->session->set_flashdata('errors', $errors);
+            $this->session->set_flashdata('input', $this->input->post());
+            redirect('auth');
+        } else {
+
+            $name = $this->input->post('name');
+            $email = $this->input->post('email');
+            $password = $this->input->post('password');
+            $pass = password_hash($password, PASSWORD_DEFAULT);
+            // $level = $this->input->post('level');
+            date_default_timezone_set("ASIA/JAKARTA");
+            $data = [
+                'name' => $name,
+                'email' => $email,
+                'password' => $pass,
+                'level' => 'admin',
+                'time_create_users' => date('Y-m-d H:i:s')
+            ];
+
+            $insert = $this->Auth_model->register("tbl_users", $data);
+            //$insert = $this->db->insert('tbl_users', $data);
+
+            if ($insert) {
+
+                $this->session->set_flashdata('success_login', 'Sukses, Anda berhasil register. Silahkan login sekarang.');
+                redirect('auth');
+            }
+        }
+    }
+
     public function update_nasabah()
     {
         $data = [
@@ -87,7 +133,7 @@ class Admin extends CI_Controller
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
             'katalog' => $this->Katalog_model->getAllKatalog()
         ];
-        
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar_admin');
@@ -103,51 +149,37 @@ class Admin extends CI_Controller
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
             'jenis_sampah' => $this->db->get('tbl_jenis_sampah')->result_array(),
         ];
-        
-        $this->form_validation->set_rules('satuan_katalog', 'satuan katalog', 'required');
-        $this->form_validation->set_rules('harga_katalog', 'harga katalog', 'required');
-        $this->form_validation->set_rules('keterangan_katalog', 'keterangan katalog', 'required');
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/header_mobile');
-            $this->load->view('templates/sidebar_admin');
-            $this->load->view('templates/topbar');
-            $this->load->view('admin/katalog_sampah/create');
-            $this->load->view('templates/footer');
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/header_mobile');
+        $this->load->view('templates/sidebar_admin');
+        $this->load->view('templates/topbar');
+        $this->load->view('admin/katalog_sampah/create');
+        $this->load->view('templates/footer');
+        if ($this->upload->do_upload('gambar_katalog')) {
+            $new_image = $this->upload->data('file_name');
+            $this->db->set('gambar_katalog', $new_image);
         } else {
-            $upload_image = $_FILES['gambar_katalog']['name'];
-            if ($upload_image) {
-                $config['allowed_types'] = 'gif|jpg|png';
-                $config['upload_path'] = './assets/images/katalog/';
-
-                $this->load->library('upload', $config);
-
-                if ($this->upload->do_upload('gambar_katalog')) {
-                    $new_image = $this->upload->data('file_name');
-                    $this->db->set('gambar_katalog', $new_image);
-                } else {
-                    echo $this->upload->display_errors();
-                }
-            }
-
-            $this->db->insert('tbl_katalog', [
-                'id_users' => $data["users"]["id_users"],
-                'nama_katalog' => $this->input->post('nama_katalog'),
-                'id_jenis_katalog_sampah' => $this->input->post('id_jenis_katalog_sampah'),
-                'satuan_katalog' => $this->input->post('satuan_katalog'),
-                'harga_katalog' => $this->input->post('harga_katalog'),
-                'keterangan_katalog' => $this->input->post('keterangan_katalog'),
-                'time_create_katalog' => date("Y-m-d h:i:s"),
-                'time_update_katalog' => date("Y-m-d h:i:s"),
-            ]);
-
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data katalog Berhasil Ditambahkan</div>');
-            redirect('admin/katalog_sampah');
-
+            echo $this->upload->display_errors();
         }
+
+
+        $this->db->insert('tbl_katalog', [
+            'id_users' => $data["users"]["id_users"],
+            'nama_katalog' => $this->input->post('nama_katalog'),
+            'id_jenis_katalog_sampah' => $this->input->post('id_jenis_katalog_sampah'),
+            'satuan_katalog' => $this->input->post('satuan_katalog'),
+            'harga_katalog' => $this->input->post('harga_katalog'),
+            'keterangan_katalog' => $this->input->post('keterangan_katalog'),
+            'time_create_katalog' => date("Y-m-d h:i:s"),
+            'time_update_katalog' => date("Y-m-d h:i:s"),
+        ]);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data katalog Berhasil Ditambahkan</div>');
+        redirect('admin/katalog_sampah');
     }
-    
+
+
     public function update_katalog_sampah($id)
     {
         $data = [
@@ -215,7 +247,7 @@ class Admin extends CI_Controller
         if ($old_image != 'default.jpg') {
             unlink(FCPATH . 'assets/images/katalog/' . $old_image);
         }
-        
+
         $this->db->delete('tbl_katalog', ['id_katalog' => $id]);
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data katalog Berhasil Dihapus</div>');
@@ -233,7 +265,7 @@ class Admin extends CI_Controller
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
             'penjualan' => $this->Penjualan_model->getAllPenjualan()
         ];
-        
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar_admin');
@@ -299,7 +331,7 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('harga_penjualan', 'harga', 'required');
         $this->form_validation->set_rules('total_penjualan', 'total', 'required');
 
-        
+
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/header_mobile');
@@ -337,7 +369,7 @@ class Admin extends CI_Controller
     // |------------------------------------------------------
     // | Laporan
     // |------------------------------------------------------
-    
+
     public function laporan()
     {
         echo "OK";
@@ -387,9 +419,9 @@ class Admin extends CI_Controller
 
 
 
-    
 
-   
+
+
     // public function laporan_observasi_pdf()
     // {
     //     if ($this->CI->router->fetch_class() != "login") {

@@ -19,43 +19,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mobile</td>
-                        <td>iPhone X 64Gb Grey</td>
-                        <td class="process">Processed</td>
-                        <td>$999.00</td>
-                        <td>$999.00</td>
-                        <td>
-                            <a href="<?= base_url('admin/update_nasabah'); ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Mobile</td>
-                        <td>iPhone X 64Gb Grey</td>
-                        <td class="process">Processed</td>
-                        <td>$999.00</td>
-                        <td>$999.00</td>
-                        <td>
-                            <a href="" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Mobile</td>
-                        <td>iPhone X 64Gb Grey</td>
-                        <td class="process">Processed</td>
-                        <td>$999.00</td>
-                        <td>$999.00</td>
-                        <td>
-                            <a href="" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
-                    
+
+                    <?php $no = 1;
+                    foreach ($nasabah as $data) : ?>
+                        <tr>
+                            <td><?= $no++ ?></td>
+                            <td><?= $data->name ?></td>
+                            <td><?= $data->rt_users ?></td>
+                            <td><?= $data->alamat_users ?></td>
+                            <td><?= $data->telepon_users ?></td>
+                            <td><?= $data->total ?></td>
+                            <td>
+                                <a href="<?= base_url('admin/update_nasabah'); ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                                <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+
                 </tbody>
             </table>
         </div>
