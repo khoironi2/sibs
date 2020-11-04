@@ -24,7 +24,7 @@ class Admin extends CI_Controller
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar_admin');
         $this->load->view('templates/topbar');
-        $this->load->view('admin/dashboard/index');
+        $this->load->view('admin/dashboard/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -60,7 +60,50 @@ class Admin extends CI_Controller
         $this->load->view('admin/nasabah/create');
         $this->load->view('templates/footer');
     }
-    
+
+    public function registerForm()
+
+    {
+
+        $this->form_validation->set_rules('name', 'Nama', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required|is_unique[tbl_users.email]|valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        $this->form_validation->set_rules('confrim_password', 'Konfirmasi Password', 'required|trim|matches[password]');
+        // $this->form_validation->set_rules('level', 'Level', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+
+            $errors = $this->form_validation->error_array();
+            $this->session->set_flashdata('errors', $errors);
+            $this->session->set_flashdata('input', $this->input->post());
+            redirect('auth');
+        } else {
+
+            $name = $this->input->post('name');
+            $email = $this->input->post('email');
+            $password = $this->input->post('password');
+            $pass = password_hash($password, PASSWORD_DEFAULT);
+            // $level = $this->input->post('level');
+            date_default_timezone_set("ASIA/JAKARTA");
+            $data = [
+                'name' => $name,
+                'email' => $email,
+                'password' => $pass,
+                'level' => 'admin',
+                'time_create_users' => date('Y-m-d H:i:s')
+            ];
+
+            $insert = $this->Auth_model->register("tbl_users", $data);
+            //$insert = $this->db->insert('tbl_users', $data);
+
+            if ($insert) {
+
+                $this->session->set_flashdata('success_login', 'Sukses, Anda berhasil register. Silahkan login sekarang.');
+                redirect('auth');
+            }
+        }
+    }
+
     public function update_nasabah()
     {
         $data = [
@@ -86,7 +129,7 @@ class Admin extends CI_Controller
             'title' => 'Admin | Katalog Sampah',
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
         ];
-        
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar_admin');
@@ -101,7 +144,7 @@ class Admin extends CI_Controller
             'title' => 'Admin | Create Katalog Sampah',
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
         ];
-        
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar_admin');
@@ -109,14 +152,14 @@ class Admin extends CI_Controller
         $this->load->view('admin/katalog_sampah/create');
         $this->load->view('templates/footer');
     }
-    
+
     public function update_katalog_sampah()
     {
         $data = [
             'title' => 'Admin | Update Katalog Sampah',
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
         ];
-        
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar_admin');
@@ -135,7 +178,7 @@ class Admin extends CI_Controller
             'title' => 'Admin | Penjualan Sampah',
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
         ];
-        
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar_admin');
@@ -150,7 +193,7 @@ class Admin extends CI_Controller
             'title' => 'Admin | Create Penjualan Sampah',
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
         ];
-        
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar_admin');
@@ -165,7 +208,7 @@ class Admin extends CI_Controller
             'title' => 'Admin | Update Penjualan Sampah',
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
         ];
-        
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar_admin');
@@ -177,7 +220,7 @@ class Admin extends CI_Controller
     // |------------------------------------------------------
     // | Laporan
     // |------------------------------------------------------
-    
+
     public function laporan()
     {
         echo "OK";
@@ -203,9 +246,9 @@ class Admin extends CI_Controller
 
 
 
-    
 
-   
+
+
     // public function laporan_observasi_pdf()
     // {
     //     if ($this->CI->router->fetch_class() != "login") {
