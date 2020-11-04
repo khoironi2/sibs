@@ -4,6 +4,7 @@
     <div class="col-md-12">
         <a href="<?= base_url('admin/create_katalog_sampah'); ?>" class="au-btn btn-dark m-b-20"><i class="fas fa-plus"></i> Tambah</a>
         <!-- DATA TABLE-->
+        <?= $this->session->flashdata('message'); ?>
         <div class="table-responsive m-b-40">
             <table class="table table-borderless table-data3">
                 <thead>
@@ -18,42 +19,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mobile</td>
-                        <td>iPhone X 64Gb Grey</td>
-                        <td class="process">Processed</td>
-                        <td>$999.00</td>
-                        <td>$999.00</td>
-                        <td>
-                            <a href="<?= base_url('admin/update_katalog_sampah'); ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Mobile</td>
-                        <td>iPhone X 64Gb Grey</td>
-                        <td class="process">Processed</td>
-                        <td>$999.00</td>
-                        <td>$999.00</td>
-                        <td>
-                            <a href="" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Mobile</td>
-                        <td>iPhone X 64Gb Grey</td>
-                        <td class="process">Processed</td>
-                        <td>$999.00</td>
-                        <td>$999.00</td>
-                        <td>
-                            <a href="" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
+                    <?php $no = 1; ?>
+                    <?php foreach ($katalog as $kat) : ?>
+
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td><?= $kat["nama_jenis_sampah"]; ?></td>
+                            <td><?= $kat["satuan_katalog"] ?></td>
+                            <td><?= $kat["harga_katalog"] ?></td>
+                            <td>
+                                <img class="img-thumbnail" width="50" src="<?= base_url('assets/images/katalog/' . $kat["gambar_katalog"]); ?>" alt="">
+                            </td>
+                            <td><?= $kat["keterangan_katalog"] ?></td>
+                            <td>
+                                <a href="<?= base_url('admin/update_katalog_sampah/' . $kat["id_katalog"]); ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                                <a onclick="return confirm('Data katalog akan terhapus.');" href="<?= base_url('admin/delete_katalog_sampah/' . $kat["id_katalog"]); ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    
+                    <?php endforeach; ?>
                     
                 </tbody>
             </table>
