@@ -24,7 +24,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?= base_url('admin/katalog_sampah'); ?>">
+                    <a href="<?= base_url('nasabah/katalog'); ?>">
                         <i class="fas fa-trash-alt"></i>
                         Katalog Sampah
                     </a>

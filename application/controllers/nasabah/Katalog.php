@@ -1,6 +1,6 @@
 <?php
 
-class Penjualan extends CI_Controller
+class Katalog extends CI_Controller
 {
     public function __construct()
     {
@@ -9,10 +9,6 @@ class Penjualan extends CI_Controller
         $this->CI = &get_instance();
         $this->load->library('session');
     }
-
-    // |------------------------------------------------------
-    // | Dashboard
-    // |------------------------------------------------------
 
     public function index()
     {
@@ -24,113 +20,17 @@ class Penjualan extends CI_Controller
                 redirect('ketua');
             }
         }
-        $id = $this->session->userdata('id_users');
-
         $data = [
-            'title' => 'Nasabah | Data Penjualan',
-            'saldoku' => $this->Nasabah_model->getSaldoku($id),
-            'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array()
-        ];
-        $data['penjualanku'] = $this->Nasabah_model->getPenjualanku($id);
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/header_mobile');
-        $this->load->view('templates/sidebar_nasabah');
-        $this->load->view('templates/topbar');
-        $this->load->view('nasabah/index', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function create_nasabah()
-    {
-        $data = [
-            'title' => 'Admin | Tambah Data Nasabah',
-            'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
-        ];
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/header_mobile');
-        $this->load->view('templates/sidebar_admin');
-        $this->load->view('templates/topbar');
-        $this->load->view('admin/nasabah/create');
-        $this->load->view('templates/footer');
-    }
-
-    public function registerForm()
-
-    {
-
-        $this->form_validation->set_rules('name', 'Nama', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|is_unique[tbl_users.email]|valid_email');
-        $this->form_validation->set_rules('password', 'Password', 'required|trim');
-        $this->form_validation->set_rules('confrim_password', 'Konfirmasi Password', 'required|trim|matches[password]');
-        // $this->form_validation->set_rules('level', 'Level', 'required');
-
-        if ($this->form_validation->run() == FALSE) {
-
-            $errors = $this->form_validation->error_array();
-            $this->session->set_flashdata('errors', $errors);
-            $this->session->set_flashdata('input', $this->input->post());
-            redirect('auth');
-        } else {
-
-            $name = $this->input->post('name');
-            $email = $this->input->post('email');
-            $password = $this->input->post('password');
-            $pass = password_hash($password, PASSWORD_DEFAULT);
-            // $level = $this->input->post('level');
-            date_default_timezone_set("ASIA/JAKARTA");
-            $data = [
-                'name' => $name,
-                'email' => $email,
-                'password' => $pass,
-                'level' => 'admin',
-                'time_create_users' => date('Y-m-d H:i:s')
-            ];
-
-            $insert = $this->Auth_model->register("tbl_users", $data);
-            //$insert = $this->db->insert('tbl_users', $data);
-
-            if ($insert) {
-
-                $this->session->set_flashdata('success_login', 'Sukses, Anda berhasil register. Silahkan login sekarang.');
-                redirect('auth');
-            }
-        }
-    }
-
-    public function update_nasabah()
-    {
-        $data = [
-            'title' => 'Admin | Update Data Nasabah',
-            'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
-        ];
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/header_mobile');
-        $this->load->view('templates/sidebar_admin');
-        $this->load->view('templates/topbar');
-        $this->load->view('admin/nasabah/update');
-        $this->load->view('templates/footer');
-    }
-
-    // |------------------------------------------------------
-    // | Katalog Sampah
-    // |------------------------------------------------------
-
-    public function katalog_sampah()
-    {
-        $data = [
-            'title' => 'Admin | Katalog Sampah',
+            'title' => 'Nasabah | Katalog Sampah',
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
             'katalog' => $this->Katalog_model->getAllKatalog()
         ];
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');
-        $this->load->view('templates/sidebar_admin');
+        $this->load->view('templates/sidebar_nasabah');
         $this->load->view('templates/topbar');
-        $this->load->view('admin/katalog_sampah/index');
+        $this->load->view('nasabah/katalog_sampah/index');
         $this->load->view('templates/footer');
     }
 

@@ -2,7 +2,6 @@
 
 <div class="row m-t-30">
     <div class="col-md-12">
-        <a href="<?= base_url('admin/create_nasabah'); ?>" class="au-btn btn-dark m-b-20"><i class="fas fa-plus"></i> Tambah</a>
         <a href="" class="au-btn btn-danger m-b-20"><i class="far fa-file-pdf"></i> Cetak</a>
         <!-- DATA TABLE-->
         <div class="table-responsive m-b-40">
@@ -11,23 +10,25 @@
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>RT</th>
-                        <th>Alamat</th>
-                        <th>No Hp / WA</th>
+                        <th>Tangal</th>
+                        <th>Katalog</th>
                         <th>Harga</th>
+                        <th>Berat</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     <?php $no = 1;
-                    foreach ($penjualan as $data) : ?>
+                    foreach ($penjualanku as $data) : ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><?= $users['name'] ?></td>
-                            <td><?= $users['rt_users'] ?></td>
-                            <td><?= $users['alamat_users'] ?></td>
-                            <td><?= $users['telepon_users'] ?></td>
-                            <td><?= $data['total_penjualan'] ?></td>
+                            <td><?= $data->name ?></td>
+                            <td><?= $data->time_create_penjualan ?></td>
+                            <td><?= $data->nama_katalog ?></td>
+                            <td><?= $data->harga_penjualan ?></td>
+                            <td><?= $data->berat_penjualan ?></td>
+                            <td><?= $data->total_penjualan ?></td>
                         </tr>
                     <?php endforeach ?>
 
