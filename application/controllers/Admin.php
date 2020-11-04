@@ -156,7 +156,29 @@ class Admin extends CI_Controller
         $this->load->view('templates/topbar');
         $this->load->view('admin/katalog_sampah/create');
         $this->load->view('templates/footer');
+        if ($this->upload->do_upload('gambar_katalog')) {
+            $new_image = $this->upload->data('file_name');
+            $this->db->set('gambar_katalog', $new_image);
+        } else {
+            echo $this->upload->display_errors();
+        }
+
+
+        $this->db->insert('tbl_katalog', [
+            'id_users' => $data["users"]["id_users"],
+            'nama_katalog' => $this->input->post('nama_katalog'),
+            'id_jenis_katalog_sampah' => $this->input->post('id_jenis_katalog_sampah'),
+            'satuan_katalog' => $this->input->post('satuan_katalog'),
+            'harga_katalog' => $this->input->post('harga_katalog'),
+            'keterangan_katalog' => $this->input->post('keterangan_katalog'),
+            'time_create_katalog' => date("Y-m-d h:i:s"),
+            'time_update_katalog' => date("Y-m-d h:i:s"),
+        ]);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data katalog Berhasil Ditambahkan</div>');
+        redirect('admin/katalog_sampah');
     }
+
 
     public function update_katalog_sampah()
     {
@@ -182,6 +204,7 @@ class Admin extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data = [
+                'nama_katalog' => $this->input->post('nama_katalog'),
                 'id_users' => $data["users"]["id_users"],
                 'id_jenis_katalog_sampah' => $this->input->post('id_jenis_katalog_sampah'),
                 'satuan_katalog' => $this->input->post('satuan_katalog'),
@@ -291,19 +314,56 @@ class Admin extends CI_Controller
         }
     }
 
-    public function update_penjualan_sampah()
+    public function update_penjualan_sampah($id)
     {
         $data = [
             'title' => 'Admin | Update Penjualan Sampah',
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
+            'penjualan' => $this->db->get_where('tbl_penjualan', ['id_penjualan' => $id])->row_array(),
+            'user' => $this->db->get('tbl_users')->result_array(),
+            'katalog' => $this->db->get('tbl_katalog')->result_array(),
         ];
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/header_mobile');
-        $this->load->view('templates/sidebar_admin');
-        $this->load->view('templates/topbar');
-        $this->load->view('admin/penjualan_sampah/update');
-        $this->load->view('templates/footer');
+        $this->form_validation->set_rules('time_create_penjualan', 'tanggal', 'required');
+        $this->form_validation->set_rules('id_users', 'nama', 'required');
+        $this->form_validation->set_rules('id_katalog', 'jenis', 'required');
+        $this->form_validation->set_rules('berat_penjualan', 'berat', 'required');
+        $this->form_validation->set_rules('harga_penjualan', 'harga', 'required');
+        $this->form_validation->set_rules('total_penjualan', 'total', 'required');
+
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/header_mobile');
+            $this->load->view('templates/sidebar_admin');
+            $this->load->view('templates/topbar');
+            $this->load->view('admin/penjualan_sampah/update');
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'time_create_penjualan' => $this->input->post('time_create_penjualan'),
+                'id_users' => $this->input->post('id_users'),
+                'id_katalog' => $this->input->post('id_katalog'),
+                'berat_penjualan' => $this->input->post('berat_penjualan'),
+                'harga_penjualan' => $this->input->post('harga_penjualan'),
+                'total_penjualan' => $this->input->post('total_penjualan'),
+                'time_update_penjualan' => date("Y-m-d h:i:s"),
+            ];
+
+            $this->db->where('id_penjualan', $this->input->post('id_penjualan'));
+            $this->db->update('tbl_penjualan', $data);
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Penjualan Sampah Berhasil Diubah!</div>');
+            redirect('admin/penjualan_sampah');
+        }
+    }
+
+    public function delete_penjualan_sampah($id)
+    {
+        $this->db->delete('tbl_penjualan', ['id_penjualan' => $id]);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Penjualan Sampah Berhasil Dihapus!</div>');
+        redirect('admin/penjualan_sampah');
     }
 
     // |------------------------------------------------------

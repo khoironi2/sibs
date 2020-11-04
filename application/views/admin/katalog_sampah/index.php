@@ -10,6 +10,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Nama</th>
                         <th>Jenis Sampah</th>
                         <th>Satuan</th>
                         <th>Harga</th>
@@ -24,6 +25,7 @@
 
                         <tr>
                             <td><?= $no++; ?></td>
+                            <td><?= $kat["nama_katalog"]; ?></td>
                             <td><?= $kat["nama_jenis_sampah"]; ?></td>
                             <td><?= $kat["satuan_katalog"] ?></td>
                             <td><?= $kat["harga_katalog"] ?></td>
