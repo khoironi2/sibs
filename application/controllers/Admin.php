@@ -383,6 +383,30 @@ class Admin extends CI_Controller
         echo "OK";
     }
 
+    
+    // |------------------------------------------------------
+    // | Laporan
+    // |------------------------------------------------------
+    
+    public function profile()
+    {
+        $data = [
+            'title' => 'Admin | Update Profile',
+            'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
+        ];
+
+        $this->form_validation->set_rules('total_penjualan', 'total', 'required');
+
+        
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/header_mobile');
+            $this->load->view('templates/sidebar_admin');
+            $this->load->view('templates/topbar');
+            $this->load->view('admin/profile/index');
+            $this->load->view('templates/footer');
+        }
+    }
 
 
 

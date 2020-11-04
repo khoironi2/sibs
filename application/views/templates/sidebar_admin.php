@@ -42,6 +42,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="<?= base_url('admin/profile'); ?>">
+                        <i class="far fa-user"></i>
+                        Profile
+                    </a>
+                </li>
+                <li>
                     <a href="<?= base_url('Auth/logout') ?>">
                         <i class="fas fa-sign-in-alt"></i>
                         Logout
