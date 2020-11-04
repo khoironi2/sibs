@@ -22,25 +22,25 @@ class Nasabah_model extends CI_model
 
         return $result->result();
     }
-    public function getSaldoku($id)
+    public function getSaldoku()
     {
         $this->db->select('tbl_users.name,tbl_users.rt_users,tbl_users.alamat_users,tbl_users.telepon_users,sum(tbl_penjualan.total_penjualan) as total');
         $this->db->from('tbl_penjualan');
         $this->db->join('tbl_users', 'tbl_users.id_users=tbl_penjualan.id_users');
-        $this->db->where('tbl_users.id_users', $id);
+        $this->db->where('tbl_users.id_users', $this->session->userdata('id_users'));
         $this->db->group_by('tbl_users.id_users');
 
         $result = $this->db->get();
 
         return $result->result();
     }
-    public function getPenjualanku($id)
+    public function getPenjualanku()
     {
         $this->db->select('*');
         $this->db->from('tbl_penjualan');
         $this->db->join('tbl_users', 'tbl_users.id_users=tbl_penjualan.id_users');
         $this->db->join('tbl_katalog', 'tbl_katalog.id_katalog=tbl_penjualan.id_katalog');
-        $this->db->where('tbl_users.id_users', $id);
+        $this->db->where('tbl_users.id_users', $this->session->userdata('id_users'));
         $result = $this->db->get();
 
         return $result->result();
@@ -52,6 +52,20 @@ class Nasabah_model extends CI_model
         $this->db->join('tbl_users', 'tbl_users.id_users=tbl_penjualan.id_users');
         $this->db->where('tbl_users.level', 'nasabah');
         $this->db->group_by('tbl_users.id_users');
+
+        $result = $this->db->get();
+
+        return $result->result();
+    }
+    public function getbytgl($keyword1, $keyword2)
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_penjualan');
+        $this->db->join('tbl_users', 'tbl_users.id_users=tbl_penjualan.id_users');
+        $this->db->join('tbl_katalog', 'tbl_katalog.id_katalog=tbl_penjualan.id_katalog');
+        $this->db->where('tbl_users.id_users', $this->session->userdata('id_users'));
+        $this->db->where('time_create_penjualan >=', $keyword1);
+        $this->db->where('time_create_penjualan <=', $keyword2);
 
         $result = $this->db->get();
 

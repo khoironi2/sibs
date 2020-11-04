@@ -1,8 +1,25 @@
 <h2 class="text-center">DATA NASABAH</h2>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">laporan Penjualan</li>
+    </ol>
+</nav>
+<div class="row">
+    <form action="<?= base_url('nasabah/penjualan/laporan_penjualan_pdf'); ?>" method="POST" class="form-inline">
+        <div class="form-group mb-2">
+            <label for="dari">Dari </label>
+            <input type="datetime-local" class="form-control ml-2" id="dari" name="keyword1">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="sampai">Sampai </label>
+            <input type="datetime-local" class="form-control ml-2" id="sampai" name="keyword2">
+        </div>
+        <button type="submit" class="au-btn btn-danger m-b-20"><i class="far fa-file-pdf"></i> cetak</button>
+    </form>
 
+</div>
 <div class="row m-t-30">
     <div class="col-md-12">
-        <a href="" class="au-btn btn-danger m-b-20"><i class="far fa-file-pdf"></i> Cetak</a>
         <!-- DATA TABLE-->
         <div class="table-responsive m-b-40">
             <table class="table table-borderless table-data3">
