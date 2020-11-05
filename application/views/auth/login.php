@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input class="au-input au-input--full" type="text" name="password" placeholder="password">
+                                    <input class="au-input au-input--full" type="password" name="password" placeholder="password">
                                     <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                                 </div>
                                 <button class="au-btn au-btn--block btn-dark m-b-20" type="submit">Login</button>
