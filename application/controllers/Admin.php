@@ -372,7 +372,7 @@ class Admin extends CI_Controller
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
             'penjualan' => $this->Penjualan_model->getAllPenjualan()
         ];
-
+        //tes gus
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar_admin');
