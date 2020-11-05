@@ -12,11 +12,7 @@
                             <div class="account-wrap">
                                 <div class="account-item clearfix js-item-menu">
                                     <div class="image">
-                                        <?php if (!$this->session->userdata('email')) : ?>
-                                            <img src="<?= base_url('assets/images/users/' . $users["gambar_users"]); ?>" alt="<?= $users["name"] ?>" />
-                                        <?php else : ?>
-                                            <img src="<?= base_url('assets') ?>/images/users/default-user-image.png" alt="<?= $users["name"] ?>" />
-                                        <?php endif; ?>
+                                        <img src="<?= base_url('assets/images/users/' . $users["gambar_users"]); ?>" alt="<?= $users["name"] ?>" />
                                     </div>
                                     <div class="content">
                                         <a class="js-acc-btn" href="#"><?= $users["name"] ?></a>
@@ -25,32 +21,24 @@
                                         <div class="info clearfix">
                                             <div class="image">
                                                 <a href="#">
-                                                    <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                    <img src="<?= base_url('assets/images/users/' . $users["gambar_users"]); ?>" alt="<?= $users["name"] ?>" alt="John Doe" />
                                                 </a>
                                             </div>
                                             <div class="content">
                                                 <h5 class="name">
-                                                    <a href="#">john doe</a>
+                                                    <a href="<?= base_url('admin/profile'); ?>"><?= $users["name"]; ?></a>
                                                 </h5>
-                                                <span class="email">johndoe@example.com</span>
+                                                <span class="email"><?= $users["email"]; ?></span>
                                             </div>
                                         </div>
                                         <div class="account-dropdown__body">
                                             <div class="account-dropdown__item">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-account"></i>Account</a>
-                                            </div>
-                                            <div class="account-dropdown__item">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-settings"></i>Setting</a>
-                                            </div>
-                                            <div class="account-dropdown__item">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                                <a href="<?= base_url('admin/profile'); ?>">
+                                                    <i class="zmdi zmdi-account"></i>Profile</a>
                                             </div>
                                         </div>
                                         <div class="account-dropdown__footer">
-                                            <a href="#">
+                                            <a href="<?= base_url('Auth/logout') ?>">
                                                 <i class="zmdi zmdi-power"></i>Logout</a>
                                         </div>
                                     </div>
