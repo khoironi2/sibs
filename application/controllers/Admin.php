@@ -381,26 +381,21 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    // public function penjualan_sampah_pdf()
-    // {
-    //     $this->load->library('dompdf_gen');
+    public function penjualan_sampah_pdf()
+    {
+        $this->load->library('dompdf_gen');
 
-    //     $data = [
-    //         'awal' =>  $tgl_awal,
-    //         'akhir' => $tgl_akhir,
-    //         'logo' => '<img src="assets/img/Logo.png" width="30" alt="" class="mr-3">'
-    //     ];
-    //     $data['observasi'] = $this->Observasi_model->getbytgl($tgl_awal, $tgl_akhir);
-    //     $this->load->view('admin/laporan/pdf/Observasi', $data);
-    //     $paper_size = 'A4';
-    //     $orientation = 'landscape';
-    //     $html = $this->output->get_output();
-    //     $this->dompdf->set_paper($paper_size, $orientation);
+        $data['penjualan'] = $this->Penjualan_model->getAllPenjualan();
+        $this->load->view('admin/penjualan_sampah/penjualan_sampah', $data);
+        $paper_size = 'A4';
+        $orientation = 'landscape';
+        $html = $this->output->get_output();
+        $this->dompdf->set_paper($paper_size, $orientation);
 
-    //     $this->dompdf->load_html($html);
-    //     $this->dompdf->render();
-    //     $this->dompdf->stream("laporan_observasi.pdf", ['Attachment' => 0]);
-    // }
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("laporan_observasi.pdf", ['Attachment' => 0]);
+    }
 
     public function create_penjualan_sampah()
     {

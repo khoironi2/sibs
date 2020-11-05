@@ -3,7 +3,7 @@
 <div class="row m-t-30">
     <div class="col-md-12">
         <a href="<?= base_url('admin/create_penjualan_sampah'); ?>" class="au-btn btn-dark m-b-20"><i class="fas fa-plus"></i> Tambah</a>
-        <a href="" class="au-btn btn-danger m-b-20"><i class="far fa-file-pdf"></i> Cetak</a>
+        <a href="<?= base_url('admin/penjualan_sampah_pdf'); ?>" class="au-btn btn-danger m-b-20"><i class="far fa-file-pdf"></i> Cetak</a>
         <!-- DATA TABLE-->
         <?= $this->session->flashdata('message'); ?>
         <div class="table-responsive m-b-40">
