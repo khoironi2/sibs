@@ -7,7 +7,7 @@
         <!-- DATA TABLE-->
         <?= $this->session->flashdata('message'); ?>
         <div class="table-responsive m-b-40">
-            <table class="table table-borderless table-data3">
+            <table class="table table-borderless table-data3" id="datatable">
                 <thead>
                     <tr>
                         <th>No</th>

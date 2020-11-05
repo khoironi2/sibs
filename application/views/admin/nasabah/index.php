@@ -53,7 +53,7 @@
         <a href="<?= base_url('admin/create_nasabah'); ?>" class="au-btn btn-dark m-b-20"><i class="fas fa-plus"></i> Tambah</a>
         <!-- DATA TABLE-->
         <div class="table-responsive m-b-40">
-            <table class="table table-borderless table-data3">
+            <table class="table table-borderless table-data3" id="datatable">
                 <thead>
                     <tr>
                         <th>No</th>
