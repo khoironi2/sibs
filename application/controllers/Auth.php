@@ -70,9 +70,10 @@ class Auth extends CI_Controller
     {
 
         $this->form_validation->set_rules('name', 'Nama', 'required');
-        $this->form_validation->set_rules('email', 'Email Telah Terdaftar', 'required|is_unique[tbl_users.email]|valid_email');
-        $this->form_validation->set_rules('password', 'Password', 'required|trim');
-        $this->form_validation->set_rules('confrim_password', 'Konfirmasi Password', 'required|trim|matches[password]');
+        $this->form_validation->set_rules('telepon_users', 'Telepon Telah Terdaftar', 'required|is_unique[tbl_users.telepon_users]');
+        // $this->form_validation->set_rules('email', 'Email Telah Terdaftar', 'required|is_unique[tbl_users.email]|valid_email');
+        // $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        // $this->form_validation->set_rules('confrim_password', 'Konfirmasi Password', 'required|trim|matches[password]');
         // $this->form_validation->set_rules('level', 'Level', 'required');
 
         if ($this->form_validation->run() == FALSE) {
@@ -84,9 +85,9 @@ class Auth extends CI_Controller
         } else {
 
             $name = $this->input->post('name');
-            $email = $this->input->post('email');
-            $password = $this->input->post('password');
-            $pass = password_hash($password, PASSWORD_DEFAULT);
+            // $email = $this->input->post('email');
+            // $password = $this->input->post('password');
+            // $pass = password_hash($password, PASSWORD_DEFAULT);
             $rt = $this->input->post('rt_users');
             $alamat_users = $this->input->post('alamat_users');
             $telepon_users = $this->input->post('telepon_users');
@@ -94,8 +95,8 @@ class Auth extends CI_Controller
             date_default_timezone_set("ASIA/JAKARTA");
             $data = [
                 'name' => $name,
-                'email' => $email,
-                'password' => $pass,
+                // 'email' => $email,
+                // 'password' => $pass,
                 'rt_users' => $rt,
                 'alamat_users' => $alamat_users,
                 'telepon_users' => $telepon_users,

@@ -47,7 +47,7 @@
                         <label for="name">Nama</label>
                         <input type="text" class="form-control" id="name" name="name" required>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <input name="email" type="email" id="inputEmail" class="form-control" placeholder="alamatemail@gmail.com" required autofocus>
                     </div>
                     <div class="form-group">
@@ -55,7 +55,7 @@
                     </div>
                     <div class="form-group">
                         <input name="confrim_password" type="password" id="inputPassword" class="form-control" placeholder="Confrim Password" required>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="rt">RT</label>
                         <input type="text" name="rt_users" class="form-control" id="rt" required>
