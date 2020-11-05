@@ -107,6 +107,56 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+
+    public function registerNasabah()
+    {
+
+        $this->form_validation->set_rules('name', 'Nama', 'required');
+        $this->form_validation->set_rules('telepon_users', 'Telepon Telah Terdaftar', 'required|is_unique[tbl_users.telepon_users]');
+        // $this->form_validation->set_rules('email', 'Email Telah Terdaftar', 'required|is_unique[tbl_users.email]|valid_email');
+        // $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        // $this->form_validation->set_rules('confrim_password', 'Konfirmasi Password', 'required|trim|matches[password]');
+        // $this->form_validation->set_rules('level', 'Level', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+
+            $errors = $this->form_validation->error_array();
+            $this->session->set_flashdata('errors', $errors);
+            $this->session->set_flashdata('input', $this->input->post());
+            redirect('admin/create_nasabah');
+        } else {
+
+            $name = $this->input->post('name');
+            // $email = $this->input->post('email');
+            // $password = $this->input->post('password');
+            // $pass = password_hash($password, PASSWORD_DEFAULT);
+            $rt = $this->input->post('rt_users');
+            $alamat_users = $this->input->post('alamat_users');
+            $telepon_users = $this->input->post('telepon_users');
+            // $level = $this->input->post('level');
+            date_default_timezone_set("ASIA/JAKARTA");
+            $data = [
+                'name' => $name,
+                // 'email' => $email,
+                // 'password' => $pass,
+                'rt_users' => $rt,
+                'alamat_users' => $alamat_users,
+                'telepon_users' => $telepon_users,
+                'level' => 'nasabah',
+                'time_create_users' => date('Y-m-d H:i:s')
+            ];
+
+            $insert = $this->Auth_model->register("tbl_users", $data);
+            //$insert = $this->db->insert('tbl_users', $data);
+
+            if ($insert) {
+
+                $this->session->set_flashdata('success_login', 'Sukses, Nasabah Berhasil Ditambah.');
+                redirect('admin/nasabah');
+            }
+        }
+    }
+
     public function registerForm()
 
     {
@@ -388,7 +438,7 @@ class Admin extends CI_Controller
             'user' => $this->db->get('tbl_users')->result_array(),
             'katalog' => $this->db->get('tbl_katalog')->result_array(),
         ];
-
+        $data['record'] =  $this->Penjualan_model->tampil_data();
         $this->form_validation->set_rules('time_create_penjualan', 'tanggal', 'required');
         $this->form_validation->set_rules('id_users', 'nama', 'required');
         $this->form_validation->set_rules('id_katalog', 'jenis', 'required');
@@ -470,7 +520,7 @@ class Admin extends CI_Controller
             $this->load->view('admin/profile/index');
             $this->load->view('templates/footer');
         } else {
-            
+
             $data = [
                 'name' => $this->input->post('name'),
                 'email' => $this->input->post('email'),

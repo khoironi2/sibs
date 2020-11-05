@@ -67,7 +67,6 @@ class Auth extends CI_Controller
     }
 
     public function registerForm()
-
     {
 
         $this->form_validation->set_rules('name', 'Nama', 'required');
