@@ -18,7 +18,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?= base_url('ketua/laporan'); ?>">
+                    <a href="<?= base_url('ketua/laporan_keuangan'); ?>">
                         <i class="far fa-clipboard"></i>
                         Laporan
                     </a>

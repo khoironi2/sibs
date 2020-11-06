@@ -20,7 +20,7 @@ class Admin extends CI_Controller
             if ($this->CI->session->userdata['level'] == 'nasabah') {
                 redirect('nasabah/penjualan');
             } elseif ($this->CI->session->userdata['level'] == 'ketua') {
-                redirect('ketua');
+                redirect('ketua/ketua');
             }
         }
         $data = [
