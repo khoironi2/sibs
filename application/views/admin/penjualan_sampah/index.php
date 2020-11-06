@@ -47,7 +47,7 @@
 <div class="row m-t-30">
     <div class="col-sm-12">
         <?php foreach ($totalpenjualan as $data) : ?>
-            <p><b>Total Penjualan Sampah :</b> Rp. <?= $data->total ?></p>
+            <p><b>Total Penjualan Sampah :</b> Rp. <?= number_format($data->total, 0, ',', '.') ?></p>
         <?php endforeach ?>
     </div>
 </div>
