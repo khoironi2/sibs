@@ -16,8 +16,8 @@
                     <div class="form-group">
                         <label for="id_users">Nama</label>
                         <select class="form-control" id="id_users" multiple name="id_users" required>
-                            <?php foreach ($user as $u) : ?>
-                                <option value="<?= $u["id_users"] ?>"><?= $u["name"] ?></option>
+                            <?php foreach ($nasabah as $u) : ?>
+                                <option value="<?= $u->id_users; ?>"><?= $u->name ?></option>
                             <?php endforeach; ?>
                         </select>
                         <?= form_error('id_users', '<small class="text-danger pl-3">', '</small>'); ?>

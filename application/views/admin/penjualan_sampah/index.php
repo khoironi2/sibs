@@ -23,21 +23,21 @@
                 <tbody>
                     <?php $no = 1; ?>
                     <?php foreach ($penjualan as $penjual) : ?>
-                    <tr>
-                        <td><?= $no++; ?></td>
-                        <td><?= $penjual["time_create_penjualan"]; ?></td>
-                        <td><?= $penjual["name"]; ?>y</td>
-                        <td><?= $penjual["nama_katalog"]; ?></td>
-                        <td><?= $penjual["berat_penjualan"]; ?></td>
-                        <td><?= $penjual["harga_penjualan"]; ?></td>
-                        <td><?= $penjual["total_penjualan"]; ?></td>
-                        <td>
-                            <a href="<?= base_url('admin/update_penjualan_sampah/' . $penjual["id_penjualan"]); ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                            <a onclick="return confirm('Data Penjualan Sampah Akan Terhapus');" href="<?= base_url('admin/delete_penjualan_sampah/' . $penjual["id_penjualan"]); ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td><?= $penjual["time_create_penjualan"]; ?></td>
+                            <td><?= $penjual["name"]; ?></td>
+                            <td><?= $penjual["nama_katalog"]; ?></td>
+                            <td><?= $penjual["berat_penjualan"]; ?></td>
+                            <td><?= $penjual["harga_penjualan"]; ?></td>
+                            <td><?= $penjual["total_penjualan"]; ?></td>
+                            <td>
+                                <a href="<?= base_url('admin/update_penjualan_sampah/' . $penjual["id_penjualan"]); ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                                <a onclick="return confirm('Data Penjualan Sampah Akan Terhapus');" href="<?= base_url('admin/delete_penjualan_sampah/' . $penjual["id_penjualan"]); ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
                     <?php endforeach; ?>
-                    
+
                 </tbody>
             </table>
         </div>
@@ -46,6 +46,8 @@
 </div>
 <div class="row m-t-30">
     <div class="col-sm-12">
-        <p><b>Total Penjualan Sampah :</b> Rp. 1.000.0000</p>
+        <?php foreach ($totalpenjualan as $data) : ?>
+            <p><b>Total Penjualan Sampah :</b> Rp. <?= $data->total ?></p>
+        <?php endforeach ?>
     </div>
 </div>

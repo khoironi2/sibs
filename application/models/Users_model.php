@@ -10,6 +10,15 @@ class Users_model extends CI_model
 
         return $result->result();
     }
+    public function getAllUsersNasabah()
+    {
+        $this->db->select('*');
+        $this->db->from('tbl_users');
+        $this->db->where('level', 'nasabah');
+        $result = $this->db->get();
+
+        return $result->result();
+    }
 
     public function getIdsId()
     {
