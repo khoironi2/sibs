@@ -70,3 +70,26 @@
 
 </html>
 <!-- end document-->
+
+<div>
+    <?php foreach ($nasabah as $data) : ?>
+        <div class="modal fade" id="ModalHapus<?= $data->id_users; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Hapus Nasabah <?= $data->name; ?></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Batalkan</button>
+                            <a class="btn btn-danger" href="<?= base_url('admin/delete_nasabah/' . $data->id_users) ?>">YAKIN !</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach ?>
+</div>

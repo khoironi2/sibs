@@ -6,9 +6,9 @@
             <h1>SIBSE'18</h1>
         </a>
     </div>
-    <div class="menu-sidebar__content js-scrollbar1">
+    <div class="menu-sidebar__content">
         <nav class="navbar-sidebar">
-            
+
             <!-- menu nasabah -->
             <ul class="list-unstyled navbar__list">
                 <li>

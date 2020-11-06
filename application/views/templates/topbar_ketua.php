@@ -26,14 +26,14 @@
                                             </div>
                                             <div class="content">
                                                 <h5 class="name">
-                                                    <a href="<?= base_url('admin/profile'); ?>"><?= $users["name"]; ?></a>
+                                                    <a href="<?= base_url('ketua/profile'); ?>"><?= $users["name"]; ?></a>
                                                 </h5>
                                                 <span class="email"><?= $users["email"]; ?></span>
                                             </div>
                                         </div>
                                         <div class="account-dropdown__body">
                                             <div class="account-dropdown__item">
-                                                <a href="<?= base_url('admin/profile'); ?>">
+                                                <a href="<?= base_url('ketua/profile'); ?>">
                                                     <i class="zmdi zmdi-account"></i>Profile</a>
                                             </div>
                                         </div>
@@ -51,6 +51,7 @@
         </header>
         <!-- HEADER DESKTOP-->
     <?php endif; ?>
+
     <!-- MAIN CONTENT-->
     <div class="main-content">
         <div class="section__content section__content--p30">

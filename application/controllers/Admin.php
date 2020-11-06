@@ -20,7 +20,7 @@ class Admin extends CI_Controller
             if ($this->CI->session->userdata['level'] == 'nasabah') {
                 redirect('nasabah/penjualan');
             } elseif ($this->CI->session->userdata['level'] == 'ketua') {
-                redirect('ketua');
+                redirect('ketua/ketua');
             }
         }
         $data = [
@@ -39,10 +39,10 @@ class Admin extends CI_Controller
     // |------------------------------------------------------
     // | Data Nasabah
     // |------------------------------------------------------
-    public function nasabah()
+    public function SaldoNasabah()
     {
         $data = [
-            'title' => 'Admin | Data Nasabah',
+            'title' => 'Admin | Data Saldo Nasabah',
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
         ];
 
@@ -53,8 +53,24 @@ class Admin extends CI_Controller
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar_admin');
         $this->load->view('templates/topbar');
-        $this->load->view('admin/nasabah/index', $data);
+        $this->load->view('admin/nasabah/SaldoNasabah', $data);
         $this->load->view('templates/footer');
+    }
+    public function nasabah()
+    {
+        $data = [
+            'title' => 'Admin | Data Nasabah',
+            'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
+        ];
+
+        $data['nasabah'] = $this->Nasabah_model->getAll();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/header_mobile');
+        $this->load->view('templates/sidebar_admin');
+        $this->load->view('templates/topbar');
+        $this->load->view('admin/nasabah/index', $data);
+        $this->load->view('templates/footer_admin_nasabah');
     }
     public function laporan_penjualan_pdf()
     {
@@ -113,9 +129,9 @@ class Admin extends CI_Controller
 
         $this->form_validation->set_rules('name', 'Nama', 'required');
         $this->form_validation->set_rules('telepon_users', 'Telepon Telah Terdaftar', 'required|is_unique[tbl_users.telepon_users]');
-        // $this->form_validation->set_rules('email', 'Email Telah Terdaftar', 'required|is_unique[tbl_users.email]|valid_email');
-        // $this->form_validation->set_rules('password', 'Password', 'required|trim');
-        // $this->form_validation->set_rules('confrim_password', 'Konfirmasi Password', 'required|trim|matches[password]');
+        $this->form_validation->set_rules('email', 'Email Telah Terdaftar', 'required|is_unique[tbl_users.email]|valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        $this->form_validation->set_rules('confrim_password', 'Konfirmasi Password', 'required|trim|matches[password]');
         // $this->form_validation->set_rules('level', 'Level', 'required');
 
         if ($this->form_validation->run() == FALSE) {
@@ -127,9 +143,9 @@ class Admin extends CI_Controller
         } else {
 
             $name = $this->input->post('name');
-            // $email = $this->input->post('email');
-            // $password = $this->input->post('password');
-            // $pass = password_hash($password, PASSWORD_DEFAULT);
+            $email = $this->input->post('email');
+            $password = $this->input->post('password');
+            $pass = password_hash($password, PASSWORD_DEFAULT);
             $rt = $this->input->post('rt_users');
             $alamat_users = $this->input->post('alamat_users');
             $telepon_users = $this->input->post('telepon_users');
@@ -137,8 +153,8 @@ class Admin extends CI_Controller
             date_default_timezone_set("ASIA/JAKARTA");
             $data = [
                 'name' => $name,
-                // 'email' => $email,
-                // 'password' => $pass,
+                'email' => $email,
+                'password' => $pass,
                 'rt_users' => $rt,
                 'alamat_users' => $alamat_users,
                 'telepon_users' => $telepon_users,
@@ -157,8 +173,14 @@ class Admin extends CI_Controller
         }
     }
 
-    public function registerForm()
+    public function delete_nasabah($id)
+    {
+        $data['id_users'] = $this->Users_model->delete($id);
+        $this->session->set_flashdata('success_login', '<div class="alert alert-success" role="alert">Sukses, Data berhasil di Hapus!</div>');
+        redirect('admin/nasabah');
+    }
 
+    public function registerForm()
     {
 
         $this->form_validation->set_rules('name', 'Nama', 'required');
@@ -200,21 +222,73 @@ class Admin extends CI_Controller
         }
     }
 
-    public function update_nasabah()
+    public function update_nasabah($id)
     {
         $data = [
             'title' => 'Admin | Update Data Nasabah',
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
+
+            'nasabah' => $this->db->get_where('tbl_users', ['id_users' => $id])->row_array()
         ];
+        // $data['nasabah'] = $this->Users_model->getID($id);
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar_admin');
         $this->load->view('templates/topbar');
-        $this->load->view('admin/nasabah/update');
+        $this->load->view('admin/nasabah/update', $data);
         $this->load->view('templates/footer');
     }
 
+    public function UpdateNasabah()
+    {
+
+        $this->form_validation->set_rules('name', 'Nama', 'required');
+        // $this->form_validation->set_rules('telepon_users', 'Telepon Telah Terdaftar', 'required|is_unique[tbl_users.telepon_users]');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+        // $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        // $this->form_validation->set_rules('confrim_password', 'Konfirmasi Password', 'required|trim|matches[password]');
+        // $this->form_validation->set_rules('level', 'Level', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+
+            $errors = $this->form_validation->error_array();
+            $this->session->set_flashdata('errors', $errors);
+            $this->session->set_flashdata('input', $this->input->post());
+            redirect('admin/nasabah');
+        } else {
+
+            $name = $this->input->post('name');
+            $email = $this->input->post('email');
+            // $password = $this->input->post('password');
+            // $pass = password_hash($password, PASSWORD_DEFAULT);
+            $rt = $this->input->post('rt_users');
+            $alamat_users = $this->input->post('alamat_users');
+            $telepon_users = $this->input->post('telepon_users');
+            // $level = $this->input->post('level');
+            $id = $this->input->post('id_users');
+            date_default_timezone_set("ASIA/JAKARTA");
+            $data = [
+                'name' => $name,
+                'email' => $email,
+                // 'password' => $pass,
+                'rt_users' => $rt,
+                'alamat_users' => $alamat_users,
+                'telepon_users' => $telepon_users,
+                'level' => 'nasabah',
+                'time_create_users' => date('Y-m-d H:i:s')
+            ];
+
+            $insert = $this->Users_model->update($id, $data);
+            //$insert = $this->db->insert('tbl_users', $data);
+
+            if ($insert) {
+
+                $this->session->set_flashdata('success_login', 'Sukses, Nasabah Berhasil Di Update.');
+                redirect('admin/nasabah');
+            }
+        }
+    }
     // |------------------------------------------------------
     // | Katalog Sampah
     // |------------------------------------------------------

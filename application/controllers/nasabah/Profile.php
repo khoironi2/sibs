@@ -1,42 +1,26 @@
-<?php 
+<?php
 
-class Ketua extends CI_Controller
+class Profile extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->cek_status();
+        $this->CI = &get_instance();
+    }
+
     public function index()
     {
+        if ($this->CI->router->fetch_class() != "login") {
+            // session check logic here...change this accordingly
+            if ($this->CI->session->userdata['level'] == 'admin') {
+                redirect('Admin');
+            } elseif ($this->CI->session->userdata['level'] == 'ketua') {
+                redirect('ketua/ketua');
+            }
+        }
         $data = [
-            'title' => 'Ketua | Dashboard',
-            'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
-        ];
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/header_mobile');
-        $this->load->view('templates/sidebar_ketua');
-        $this->load->view('templates/topbar');
-        $this->load->view('ketua/dashboard/index');
-        $this->load->view('templates/footer');
-    }
-
-    public function penjualan_sampah()
-    {
-        $data = [
-            'title' => 'Ketua | Penjualan Sampah',
-            'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
-            'penjualan' => $this->Penjualan_model->getAllPenjualan()
-        ];
-        
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/header_mobile');
-        $this->load->view('templates/sidebar_ketua');
-        $this->load->view('templates/topbar');
-        $this->load->view('ketua/penjualan_sampah/index');
-        $this->load->view('templates/footer');
-    }
-
-    public function profile()
-    {
-        $data = [
-            'title' => 'Ketua | Update Profile',
+            'title' => 'Nasabah | Update Profile',
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
         ];
 
@@ -53,9 +37,9 @@ class Ketua extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/header_mobile');
-            $this->load->view('templates/sidebar_ketua');
-            $this->load->view('templates/topbar');
-            $this->load->view('ketua/profile/index');
+            $this->load->view('templates/sidebar_nasabah');
+            $this->load->view('templates/topbar_nasabah');
+            $this->load->view('nasabah/profile/index');
             $this->load->view('templates/footer');
         } else {
 
@@ -90,7 +74,7 @@ class Ketua extends CI_Controller
             $this->db->update('tbl_users', $data);
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Profile Berhasil Diubah!</div>');
-            redirect('ketua/profile');
+            redirect('nasabah/profile');
         }
     }
 }

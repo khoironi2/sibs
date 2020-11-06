@@ -17,19 +17,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                <?php $no = 1; ?>
+                    <?php $no = 1; ?>
                     <?php foreach ($penjualan as $penjual) : ?>
-                    <tr>
-                        <td><?= $no++; ?></td>
-                        <td><?= $penjual["time_create_penjualan"]; ?></td>
-                        <td><?= $penjual["name"]; ?>y</td>
-                        <td><?= $penjual["nama_katalog"]; ?></td>
-                        <td><?= $penjual["berat_penjualan"]; ?></td>
-                        <td><?= $penjual["harga_penjualan"]; ?></td>
-                        <td><?= $penjual["total_penjualan"]; ?></td>
-                    </tr>
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td><?= $penjual["time_create_penjualan"]; ?></td>
+                            <td><?= $penjual["name"]; ?>y</td>
+                            <td><?= $penjual["nama_katalog"]; ?></td>
+                            <td><?= $penjual["berat_penjualan"]; ?></td>
+                            <td>Rp. <?= number_format($penjual["harga_penjualan"], 0, ',', '.'); ?></td>
+                            <td>Rp. <?= number_format($penjual["total_penjualan"], 0, ',', '.'); ?></td>
+                        </tr>
                     <?php endforeach; ?>
-                    
+
                 </tbody>
             </table>
         </div>

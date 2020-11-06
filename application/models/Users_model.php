@@ -20,11 +20,11 @@ class Users_model extends CI_model
         return $result->result();
     }
 
-    public function getIdsId()
+    public function getID($id)
     {
         $this->db->select('*');
-        $this->db->from('santri');
-        $this->db->join('users', 'users.id=santri.id');
+        $this->db->from('tbl_users');
+        $this->db->where('id_users', $id);
 
         $result = $this->db->get();
 

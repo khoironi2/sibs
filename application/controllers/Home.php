@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Home extends CI_Controller
 {
@@ -11,7 +11,7 @@ class Home extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar');
-        $this->load->view('templates/topbar');
+        $this->load->view('templates/topbar_home');
         $this->load->view('pages/home');
         $this->load->view('templates/footer');
     }

@@ -12,12 +12,6 @@
             <!-- menu admin -->
             <ul class="list-unstyled navbar__list">
                 <li>
-                    <a href="<?= base_url('admin'); ?>">
-                        <i class="fas fa-home"></i>
-                        Home
-                    </a>
-                </li>
-                <li>
                     <a href="<?= base_url('nasabah/penjualan'); ?>">
                         <i class="fas fa-shopping-basket"></i>
                         Hasil Penjualan
@@ -27,6 +21,12 @@
                     <a href="<?= base_url('nasabah/katalog'); ?>">
                         <i class="fas fa-trash-alt"></i>
                         Katalog Sampah
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= base_url('nasabah/profile'); ?>">
+                        <i class="far fa-user"></i>
+                        Profile
                     </a>
                 </li>
                 <li>

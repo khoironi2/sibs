@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-body">
 
-                <form action="<?= base_url('ketua/profile'); ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= base_url('nasabah/profile'); ?>" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <label for="name">Nama</label>
@@ -50,7 +50,7 @@
                                 <img src="<?= base_url('assets/images/users/' . $users["gambar_users"]); ?>" alt="">
                             </div>
                             <div class="col-sm-10">
-                                <label for="gambar_users">Gambar</label>
+                                <label for="gambar_users">Gambar1</label>
                                 <div class="custom-file">
                                     <input type="file" class="form-control-file" id="gambar_users" name="gambar_users">
                                 </div>

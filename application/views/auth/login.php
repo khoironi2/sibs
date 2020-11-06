@@ -4,41 +4,41 @@
             <div class="container">
                 <div class="login-wrap">
 
-                <?php $errors = $this->session->flashdata('errors'); ?>
+                    <?php $errors = $this->session->flashdata('errors'); ?>
 
-                <?php if (!empty($errors)) : ?>
+                    <?php if (!empty($errors)) : ?>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="alert alert-danger text-center">
-                                <?php foreach ($errors as $key => $error) { ?>
-                                    <?php echo "$error<br>"; ?>
-                                <?php } ?>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-danger text-center">
+                                    <?php foreach ($errors as $key => $error) { ?>
+                                        <?php echo "$error<br>"; ?>
+                                    <?php } ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                <?php elseif ($msg = $this->session->flashdata('error_login')) : ?>
+                    <?php elseif ($msg = $this->session->flashdata('error_login')) : ?>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="alert alert-danger text-center">
-                                <?= $msg ?>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-danger text-center">
+                                    <?= $msg ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                
-                <?php elseif ($msg = $this->session->flashdata('success_login')) : ?>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="alert alert-success text-center">
-                                <?= $msg ?>
+                    <?php elseif ($msg = $this->session->flashdata('success_login')) : ?>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-success text-center">
+                                    <?= $msg ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                <?php endif; ?>
+                    <?php endif; ?>
 
 
                     <div class="login-content">
@@ -58,8 +58,8 @@
                                 </div>
                                 <button class="au-btn au-btn--block btn-dark m-b-20" type="submit">Login</button>
                             </form>
-
-                            <a href="" data-toggle="modal" data-target="#exampleModal">Register</a>
+                            <!-- 
+                            <a href="" data-toggle="modal" data-target="#exampleModal">Register</a> -->
                         </div>
                     </div>
                 </div>
