@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 03 Nov 2020 pada 17.35
+-- Generation Time: 06 Nov 2020 pada 16.29
 -- Versi Server: 10.1.9-MariaDB
 -- PHP Version: 7.0.0
 
@@ -23,39 +23,42 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_penjualan`
+-- Struktur dari tabel `tbl_about`
 --
 
-CREATE TABLE `tbl_penjualan` (
-  `id_penjualan` int(11) NOT NULL,
-  `id_users` int(11) NOT NULL,
-  `id_katalog` int(11) NOT NULL,
-  `berat_penjualan` varchar(128) NOT NULL,
-  `harga_penjualan` varchar(128) NOT NULL,
-  `total_penjualan` varchar(128) NOT NULL,
-  `time_create_penjualan` datetime NOT NULL,
-  `time_update_penjualan` datetime NOT NULL
+CREATE TABLE `tbl_about` (
+  `id_about` int(11) NOT NULL,
+  `nama_about` varchar(256) NOT NULL,
+  `keterangan` text NOT NULL,
+  `gambar` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_about`
+--
+
+INSERT INTO `tbl_about` (`id_about`, `nama_about`, `keterangan`, `gambar`) VALUES
+(1, 'asas', 'asasasasasa', 'asa');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tbl_penjualan`
+-- Indexes for table `tbl_about`
 --
-ALTER TABLE `tbl_penjualan`
-  ADD PRIMARY KEY (`id_penjualan`);
+ALTER TABLE `tbl_about`
+  ADD PRIMARY KEY (`id_about`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `tbl_penjualan`
+-- AUTO_INCREMENT for table `tbl_about`
 --
-ALTER TABLE `tbl_penjualan`
-  MODIFY `id_penjualan` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tbl_about`
+  MODIFY `id_about` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

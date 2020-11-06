@@ -26,6 +26,7 @@ class Admin extends CI_Controller
         $data = [
             'title' => 'Admin | Dashboard',
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
+            'abouts' => $this->db->get('tbl_about')->result_array()
         ];
 
         $this->load->view('templates/header', $data);
@@ -34,6 +35,38 @@ class Admin extends CI_Controller
         $this->load->view('templates/topbar');
         $this->load->view('admin/dashboard/index', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function edit_about($id)
+    {
+        $data = [
+            'title' => 'Admin | Edit About',
+            'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
+            'about' => $this->db->get_where('tbl_about', ['id_about' => $id])->row_array()
+        ];
+
+        $this->form_validation->set_rules('nama_about', 'nama', 'required');
+        $this->form_validation->set_rules('keterangan', 'keterangan', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/header_mobile');
+            $this->load->view('templates/sidebar_admin');
+            $this->load->view('templates/topbar');
+            $this->load->view('admin/dashboard/edit', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'nama_about' => $this->input->post('nama_about'),
+                'keterangan' => $this->input->post('keterangan'),
+            ];
+
+            $this->db->where('id_about', $id);
+            $this->db->update('tbl_about', $data);
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success mt-3" role="alert">Sukses, Data Berhasil Diubah!</div>');
+            redirect('admin');
+        }
     }
 
     // |------------------------------------------------------
