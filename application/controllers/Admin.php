@@ -39,6 +39,23 @@ class Admin extends CI_Controller
     // |------------------------------------------------------
     // | Data Nasabah
     // |------------------------------------------------------
+    public function SaldoNasabah()
+    {
+        $data = [
+            'title' => 'Admin | Data Saldo Nasabah',
+            'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
+        ];
+
+        $data['nasabahs'] = $this->Nasabah_model->getAll();
+        $data['nasabah'] = $this->Nasabah_model->getAllNasabah();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/header_mobile');
+        $this->load->view('templates/sidebar_admin');
+        $this->load->view('templates/topbar');
+        $this->load->view('admin/nasabah/SaldoNasabah', $data);
+        $this->load->view('templates/footer');
+    }
     public function nasabah()
     {
         $data = [
@@ -46,8 +63,7 @@ class Admin extends CI_Controller
             'users' => $this->db->get_where('tbl_users', ['email' => $this->session->userdata('email')])->row_array(),
         ];
 
-        $data['nasabahs'] = $this->Nasabah_model->getAll();
-        $data['nasabah'] = $this->Nasabah_model->getAllNasabah();
+        $data['nasabah'] = $this->Nasabah_model->getAll();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');

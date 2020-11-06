@@ -8,13 +8,19 @@
     </div>
     <div class="menu-sidebar__content js-scrollbar1">
         <nav class="navbar-sidebar">
-            
+
             <!-- menu admin -->
             <ul class="list-unstyled navbar__list">
                 <li>
                     <a href="<?= base_url('admin'); ?>">
                         <i class="fas fa-home"></i>
                         Home
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= base_url('admin/SaldoNasabah'); ?>">
+                        <i class="fas fa-database"></i>
+                        Data Saldo Nasabah
                     </a>
                 </li>
                 <li>
