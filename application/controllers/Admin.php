@@ -537,8 +537,8 @@ class Admin extends CI_Controller
         $data = [
             'awal' =>  $keyword1,
             'akhir' => $keyword2,
-            'saldoku' => $this->Penjualan_model->getSaldoku($keyword1, $keyword2),
-            'totalpenjualan' => $this->Penjualan_model->getTotalPenjualan(),
+            'totalpenjualan' => $this->Penjualan_model->getSaldoku($keyword1, $keyword2),
+            // 'totalpenjualan' => $this->Penjualan_model->getTotalPenjualan(),
             'logo' => '<img src="assets/images/icon/logo-mini.png" alt="" class="mr-3">',
             'gambar' => 'assets/img/perbaikan/'
         ];

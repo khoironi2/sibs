@@ -41,10 +41,24 @@
                     <td><?= $no++ ?></td>
                     <td><?= $data->time_create_penjualan ?></td>
                     <td><?= $data->nama_katalog ?></td>
-                    <td><?= $data->berat_penjualan ?></td>
-                    <td><?= $data->total_penjualan ?></td>
+                    <td><?= $data->berat ?></td>
+                    <td><?= $data->total ?></td>
                 </tr>
             <?php endforeach ?>
         </tbody>
     </table>
+    <div class="row m-t-30">
+    <div class="col-sm-12">
+        <?php foreach ($totalpenjualan as $data) : ?>
+            <p><b>Total Berat Sampah :</b> Rp. <?= $data->berat ?></p>
+        <?php endforeach ?>
+    </div>
+</div>
+<div class="row m-t-30">
+    <div class="col-sm-12">
+        <?php foreach ($totalpenjualan as $data) : ?>
+            <p><b>Total Penjualan Sampah :</b> Rp. <?= $data->total ?></p>
+        <?php endforeach ?>
+    </div>
+</div>
 </body></html>

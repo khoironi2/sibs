@@ -35,9 +35,10 @@ class Penjualan_model extends CI_Model
 
     public function getNasabahbytgl($keyword1, $keyword2)
     {
-        $this->db->select('*');
+        $this->db->select('tbl_penjualan.time_create_penjualan,tbl_katalog.nama_katalog,sum(tbl_penjualan.berat_penjualan) as berat,sum(tbl_penjualan.total_penjualan) as total');
         $this->db->from('tbl_penjualan');
         $this->db->join('tbl_katalog', 'tbl_katalog.id_katalog=tbl_penjualan.id_katalog');
+        $this->db->group_by('tbl_katalog.id_katalog');
         $this->db->where('time_create_penjualan >=', $keyword1);
         $this->db->where('time_create_penjualan <=', $keyword2);
         $result = $this->db->get();
@@ -46,13 +47,11 @@ class Penjualan_model extends CI_Model
     }
     public function getSaldoku($keyword1, $keyword2)
     {
-        $this->db->select('sum(tbl_penjualan.total_penjualan) as total');
+        $this->db->select('sum(tbl_penjualan.berat_penjualan) as berat,sum(tbl_penjualan.total_penjualan) as total');
         $this->db->from('tbl_penjualan');
-        $this->db->join('tbl_users', 'tbl_users.id_users=tbl_penjualan.id_users');
-        $this->db->join('tbl_katalog', 'tbl_katalog.id_katalog=tbl_penjualan.id_users');
+        $this->db->join('tbl_katalog', 'tbl_katalog.id_katalog=tbl_penjualan.id_katalog');
         $this->db->where('time_create_penjualan >=', $keyword1);
         $this->db->where('time_create_penjualan <=', $keyword2);
-        $this->db->group_by('tbl_users.id_users');
 
         $result = $this->db->get();
 
