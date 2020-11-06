@@ -45,8 +45,8 @@
                     <td><?= $data->name ?></td>
                     <td><?= $data->nama_katalog ?></td>
                     <td><?= $data->berat ?></td>
-                    <td><?= $data->harga_penjualan ?></td>
-                    <td>Rp. <?= $data->total ?></td>
+                    <td>Rp. <?= number_format($data->harga_penjualan, 0, ',', '.'); ?></td>
+                    <td>Rp. <?= number_format($data->total, 0, ',', '.'); ?></td>
                 </tr>
             <?php endforeach ?>
             <tr>
@@ -56,7 +56,7 @@
                  <?php endforeach ?></td>
                  <td></td>
                 <td><?php foreach ($totalpenjualan as $data) : ?>
-            <p><b>Rp. <?= $data->total ?></b></p>
+            <p><b>Rp. <?= number_format($data->total, 0, ',', '.'); ?></b></p>
         <?php endforeach ?></td>
             </tr>
         </tbody>

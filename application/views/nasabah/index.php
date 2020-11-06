@@ -43,9 +43,9 @@
                             <td><?= $data->name ?></td>
                             <td><?= $data->time_create_penjualan ?></td>
                             <td><?= $data->nama_katalog ?></td>
-                            <td><?= $data->harga_penjualan ?></td>
+                            <td>Rp. <?= number_format($data->harga_penjualan, 0, ',', '.'); ?></td>
                             <td><?= $data->berat_penjualan ?></td>
-                            <td><?= $data->total_penjualan ?></td>
+                            <td>Rp. <?= number_format($data->total_penjualan, 0, ',', '.'); ?></td>
                         </tr>
                     <?php endforeach ?>
 
@@ -59,7 +59,7 @@
     <div class="col-sm-12">
         <?php $no = 1;
         foreach ($saldoku as $data) : ?>
-            <p><b>Total Penjualan Sampah :</b> Rp. <?= $data->total; ?></p>
+            <p><b>Total Penjualan Sampah : Rp. <?= number_format($data->total, 0, ',', '.'); ?></b></p>
         <?php endforeach ?>
     </div>
 </div>

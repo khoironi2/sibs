@@ -73,7 +73,7 @@
                             <td><?= $data->rt_users ?></td>
                             <td><?= $data->alamat_users ?></td>
                             <td><?= $data->telepon_users ?></td>
-                            <td><?= $data->total ?></td>
+                            <td>Rp. <?= number_format($data->total, 0, ',', '.'); ?></td>
                         </tr>
                     <?php endforeach ?>
 

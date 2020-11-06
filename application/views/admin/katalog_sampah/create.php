@@ -4,7 +4,7 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
-            
+
                 <form action="<?= base_url('admin/create_katalog_sampah'); ?>" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <label for="id_jenis_katalog_sampah">Jenis Sampah</label>
                         <select class="form-control" id="id_jenis_katalog_sampah" name="id_jenis_katalog_sampah">
-                            <?php foreach ($jenis_sampah as $sampah): ?>
+                            <?php foreach ($jenis_sampah as $sampah) : ?>
                                 <option value="<?= $sampah["id_jenis_sampah"] ?>"><?= $sampah["nama_jenis_sampah"] ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -35,8 +35,10 @@
                     <div class="form-group">
                         <label for="gambar_katalog">Gambar</label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="gambar_katalog" name="gambar_katalog">
-                            <label class="custom-file-label" for="gambar_katalog">Choose file</label>
+                            <!-- <input type="file" class="custom-file-input" id="gambar_katalog" name="gambar_katalog">
+                            <label class="custom-file-label" for="gambar_katalog">Choose file</label> -->
+                            <!-- <label for="exampleFormControlFile1">Gambar</label> -->
+                            <input type="file" id="gambar_katalog" name="gambar_katalog" class="form-control-file">
                         </div>
                     </div>
                     <div class="form-group">
@@ -47,7 +49,7 @@
                     <div class="form-group mt-5">
                         <button type="submit" class="btn btn-dark">Simpan</button>
                     </div>
-                
+
                 </form>
 
             </div>

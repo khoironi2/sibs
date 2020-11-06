@@ -7,7 +7,7 @@
             <div class="card-body">
 
                 <form action="<?= base_url('admin/profile'); ?>" method="POST" enctype="multipart/form-data">
-        
+
                     <div class="form-group">
                         <label for="name">Nama</label>
                         <input type="text" class="form-control" id="name" name="name" required value="<?= $users["name"]; ?>">
@@ -50,10 +50,9 @@
                                 <img src="<?= base_url('assets/images/users/' . $users["gambar_users"]); ?>" alt="">
                             </div>
                             <div class="col-sm-10">
-                            <label for="gambar_users">telepon</label>
+                                <label for="gambar_users">Gambar</label>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="gambar_users" name="gambar_users">
-                                    <label class="custom-file-label" for="gambar_users">Choose file</label>
+                                    <input type="file" id="gambar_users" name="gambar_users" class="form-control-file">
                                 </div>
                             </div>
                         </div>
@@ -64,7 +63,7 @@
                     </div>
 
                 </form>
-                
+
             </div>
         </div>
     </div>

@@ -42,7 +42,7 @@
                     <td><?= $data->time_create_penjualan ?></td>
                     <td><?= $data->nama_katalog ?></td>
                     <td><?= $data->berat ?></td>
-                    <td>Rp. <?= $data->total ?></td>
+                    <td>Rp. <?= number_format($data->total, 0, ',', '.'); ?></td>
                 </tr>
             <?php endforeach ?>
             <tr>
@@ -51,7 +51,7 @@
                 <p><b> <?= $data->berat ?></b></p>
                  <?php endforeach ?></td>
                 <td><?php foreach ($totalpenjualan as $data) : ?>
-            <p><b>Rp. <?= $data->total ?></b></p>
+            <p><b>Rp. <?= number_format($data->total, 0, ',', '.'); ?></b></p>
         <?php endforeach ?></td>
             </tr>
         </tbody>

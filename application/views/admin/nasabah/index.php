@@ -62,7 +62,7 @@
                             <td><?= $data->telepon_users ?></td>
                             <td>
                                 <a href="<?= base_url('admin/update_nasabah/' . $data->id_users); ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                                <a href="<?= base_url('admin/delete_nasabah/' . $data->id_users); ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                <a href="" data-toggle="modal" data-target="#ModalHapus<?= $data->id_users; ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                     <?php endforeach ?>
@@ -73,3 +73,12 @@
         <!-- END DATA TABLE-->
     </div>
 </div>
+
+
+
+
+
+
+
+
+<!-- Modal -->

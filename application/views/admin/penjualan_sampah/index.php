@@ -29,8 +29,8 @@
                             <td><?= $penjual["name"]; ?></td>
                             <td><?= $penjual["nama_katalog"]; ?></td>
                             <td><?= $penjual["berat_penjualan"]; ?></td>
-                            <td><?= $penjual["harga_penjualan"]; ?></td>
-                            <td><?= $penjual["total_penjualan"]; ?></td>
+                            <td>Rp. <?= number_format($penjual['harga_penjualan'], 0, ',', '.'); ?></td>
+                            <td>Rp. <?= number_format($penjual['total_penjualan'], 0, ',', '.'); ?></td>
                             <td>
                                 <a href="<?= base_url('admin/update_penjualan_sampah/' . $penjual["id_penjualan"]); ?>" class="btn btn-info"><i class="fas fa-edit"></i></a>
                                 <a onclick="return confirm('Data Penjualan Sampah Akan Terhapus');" href="<?= base_url('admin/delete_penjualan_sampah/' . $penjual["id_penjualan"]); ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
@@ -47,7 +47,8 @@
 <div class="row m-t-30">
     <div class="col-sm-12">
         <?php foreach ($totalpenjualan as $data) : ?>
-            <p><b>Total Penjualan Sampah :</b> Rp. <?= $data->total ?></p>
+            <p><b>Total Penjualan Sampah :</b> Rp. <?= number_format($data->total, 0, ',', '.'); ?></p>
+
         <?php endforeach ?>
     </div>
 </div>

@@ -10,6 +10,9 @@
                         <input type="text" value="<?= $nasabah["name"] ?>" name="name" class="form-control" id="name">
                         <input type="text" hidden value="<?= $nasabah["id_users"] ?>" name="id_users" class="form-control" id="nama">
                     </div>
+                    <div class="form-group">
+                        <input name="email" value="<?= $nasabah["email"] ?>" type="email" id="inputEmail" class="form-control" placeholder="alamatemail@gmail.com" required autofocus>
+                    </div>
 
                     <div class="form-group">
                         <label for="rt">RT</label>

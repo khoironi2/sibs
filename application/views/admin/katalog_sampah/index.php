@@ -28,7 +28,7 @@
                             <td><?= $kat["nama_katalog"]; ?></td>
                             <td><?= $kat["nama_jenis_sampah"]; ?></td>
                             <td><?= $kat["satuan_katalog"] ?></td>
-                            <td><?= $kat["harga_katalog"] ?></td>
+                            <td>Rp. <?= number_format($kat["harga_katalog"], 0, ',', '.'); ?></td>
                             <td>
                                 <img class="img-thumbnail" width="50" src="<?= base_url('assets/images/katalog/' . $kat["gambar_katalog"]); ?>" alt="">
                             </td>
@@ -38,9 +38,9 @@
                                 <a onclick="return confirm('Data katalog akan terhapus.');" href="<?= base_url('admin/delete_katalog_sampah/' . $kat["id_katalog"]); ?>" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
-                    
+
                     <?php endforeach; ?>
-                    
+
                 </tbody>
             </table>
         </div>

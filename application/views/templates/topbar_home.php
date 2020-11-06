@@ -12,13 +12,13 @@
                             <div class="account-wrap">
                                 <div class="account-item clearfix js-item-menu">
                                     <div class="image">
-                                        <img src="<?= base_url('assets/images/users/' . $users["gambar_users"]); ?>" alt="<?= $users["name"] ?>" />
+                                        <!-- <img src="<?= base_url('assets/images/users/' . $users["gambar_users"]); ?>" alt="<?= $users["name"] ?>" /> -->
                                     </div>
                                     <div class="content">
-                                        <a class="js-acc-btn" href="#"><?= $users["name"] ?></a>
+                                        <a class="js-acc-btn" href="#"></a>
                                     </div>
                                     <div class="account-dropdown js-dropdown">
-                                        <div class="info clearfix">
+                                        <!-- <div class="info clearfix">
                                             <div class="image">
                                                 <a href="#">
                                                     <img src="<?= base_url('assets/images/users/' . $users["gambar_users"]); ?>" alt="<?= $users["name"] ?>" alt="John Doe" />
@@ -30,7 +30,7 @@
                                                 </h5>
                                                 <span class="email"><?= $users["email"]; ?></span>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="account-dropdown__body">
                                             <div class="account-dropdown__item">
                                                 <a href="<?= base_url('admin/profile'); ?>">
