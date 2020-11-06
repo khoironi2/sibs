@@ -109,8 +109,8 @@ class Auth extends CI_Controller
 
             if ($insert) {
 
-                $this->session->set_flashdata('success_login', 'Sukses, Anda berhasil register. Silahkan login sekarang.');
-                redirect('auth');
+                $this->session->set_flashdata('success_login', 'Sukses, Anda telah terdaftar.');
+                redirect('/pendaftaran');
             }
         }
     }
