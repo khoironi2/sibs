@@ -27,7 +27,7 @@ class Penjualan_sampah extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar_ketua');
-        $this->load->view('templates/topbar');
+        $this->load->view('templates/topbar_ketua');
         $this->load->view('ketua/penjualan_sampah/index');
         $this->load->view('templates/footer');
     }

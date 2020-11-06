@@ -26,7 +26,7 @@ class Ketua extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/header_mobile');
         $this->load->view('templates/sidebar_ketua');
-        $this->load->view('templates/topbar');
+        $this->load->view('templates/topbar_ketua');
         $this->load->view('ketua/dashboard/index');
         $this->load->view('templates/footer');
     }
